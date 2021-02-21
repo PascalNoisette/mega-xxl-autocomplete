@@ -15,6 +15,8 @@ Follow the quick start https://docs.appbase.io/docs/reactivesearch/v3/overview/q
 npm install @appbaseio/reactivesearch
 ```
 
+https://marmelab.com/react-admin/Readme.html
+
 ## Available Scripts
 
 In the project directory, you can run:

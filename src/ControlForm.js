@@ -1,16 +1,16 @@
 import React, { Component }  from 'react';
-import Engines from './Engine'
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import {  EditButton } from 'react-admin';
+const array_chunk = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size));
 
 class ControlForm extends Component {
 
   componentDidMount() {
-    const apiUrl = window.location.protocol + '/posts';
+    const apiUrl = window.location.protocol + '/services';
     fetch(apiUrl)
       .then((response) => response.json())
-      .then((data) => this.services = data.map(x=>Engines[x.engine](x)));
+      .then((data) => this.services = data);
   }
 
   constructor(props) {
@@ -26,15 +26,16 @@ class ControlForm extends Component {
   handleChange(event) {
     this.setState({value: event.target.value});
     this.Progress.forEach((e) => {
-      e.setState({
-        isOpen: true,
-      });
-      e.setValue(event.target.value);
+      if (e) {
+        e.setState({
+          isOpen: true,
+        });
+        e.setValue(event.target.value);
+      }
     });
   }
 
   render() {
-    const array_chunk = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size));
     const rows = array_chunk(this.services, 3);
     let index = 0;
     return (
@@ -58,7 +59,7 @@ class ControlForm extends Component {
                             src={service.logo}
                             alt={service.logo_alt}/>
                           <ReactiveBase
-          url={process.env.NODE_ENV === "production" ? "" + window.location : service.url}
+          url={""+window.location}
           app={service.app}
       >
                               <DataSearch
@@ -69,14 +70,16 @@ class ControlForm extends Component {
                   categoryField="NotebookId.keyword"
                   placeholder= {"Search for "+ service.app} 
                   downShiftProps={{
-                    onSelect: service.onselect
+                    onSelect:  value => {
+                      window.location = service.location + value.source[service.source]
+                    }
                   }}
                   style={{
                       padding: '5px',
                       marginTop: '10px',
                   }}
               />
-                              <EditButton basePath="/posts" record={service}/>
+                              <EditButton basePath="/services" record={service}/>
                           </ReactiveBase>
                       </Col>
                   )

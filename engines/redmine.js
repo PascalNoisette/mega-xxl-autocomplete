@@ -2,9 +2,6 @@ const axios = require('axios');
 
 module.exports = function (service) {
   return Object.assign({}, service, {
-    onselect: value => {
-      window.location = service.location + value.source[service.source]
-    },
     request: (clitentReq, clientRes) => {
       
       const keyword = JSON.parse(clitentReq.body.split('\n')[1]).query.bool.must[0].bool.must.bool.should[0].multi_match.query;

@@ -1,0 +1,128 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger services
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+definitions:
+  service:
+    properties:
+      id:
+        type: integer
+      logo:
+        type: "string"
+      logo_alt:
+        type: "string"
+      url:
+        type: "string"
+      app:
+        type: "string"
+      dataField:
+        type: "string"
+      credentials:
+        type: "string"
+      location:
+        type: "string"
+      source:
+        type: "string"
+      engine:
+        type: "string"
+        required: true
+
+parameters:
+  serviceId:
+    name: serviceId
+    in: path
+    required: true
+    type: string
+
+paths:
+  /services:
+    get:
+      description: Returns all services
+      responses:
+        default:
+          description: Returns the matching services
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/service"
+          headers:
+            last-modified:
+              type: string
+              description: The date/time that a service was last modified
+
+
+    post:
+      description: Creates a new service in the store
+      parameters:
+        - name: service
+          in: body
+          description: The service to add to the store
+          required: true
+          schema:
+            $ref: "#/definitions/service"
+      responses:
+        201:
+          description: Returns the newly-added service
+          schema:
+            $ref: "#/definitions/service"
+          headers:
+            Location:
+              type: string
+              description: The URL of the newly-added service
+
+  /services/{serviceId}:
+    parameters:
+      - $ref: "#/parameters/serviceId"
+
+    get:
+      description: Returns a service by name
+      responses:
+        default:
+          description: Returns the service data
+          schema:
+            $ref: "#/definitions/service"
+          headers:
+            last-modified:
+              type: string
+              description: The date/time that the service was last modified
+
+    delete:
+      description: Deletes a single service based on the name supplied
+      responses:
+        default:
+          description: Returns the service that was deleted
+          schema:
+            $ref: "#/definitions/service"
+
+    put:
+      description: Updates a service by name
+      parameters:
+        - name: service
+          in: body
+          description: The updated service info
+          required: true
+          schema:
+            $ref: "#/definitions/service"
+      responses:
+        default:
+          description: Returns the updated service data
+          schema:
+            $ref: "#/definitions/service"
+
+  /:
+    get:
+      produces:
+        - text/html
+      responses:
+        default:
+          description: The React Frontend
+          schema:
+            type: file
+            default:
+              $ref: "../build/index.html"

@@ -2,17 +2,12 @@ const axios = require('axios');
 
 module.exports = function (service) {
   return Object.assign({}, service, {
-    onselect: value => {
-      window.location = service.location + value.source[service.source];
-      return false;
-    },
     request: (clitentReq, clientRes) => {
       
       const keyword = JSON.parse(clitentReq.body.split('\n')[1]).query.bool.must[0].bool.must.bool.should[0].multi_match.query;
 
       axios({
-        //url: service.url + encodeURI('"' + keyword.replace('"', '\\"') + '"'),
-	      url: service.url + encodeURI('"' + keyword.replace(/[":+-]/g, m=> "\\" + m) + '"'),
+        url: service.url + encodeURI('"' + keyword.replace(/[":+-]/g, m=> "\\" + m) + '"'),
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -29,7 +24,6 @@ module.exports = function (service) {
                   "hits": Object.keys(results.data.results).reduce((hits, file)=>{
                     results.data.results[file].forEach(element => {
                       element.file=file + '#L' + element.lineNumber;
-	              element.title='<div class="suggest-legend">'+file.split('/').filter(x=>x).splice(0,2).join("/")+ "</div>" + element.line;
                       element._source = Object.assign({}, element);
                       hits.push(element);
                     });

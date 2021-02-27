@@ -1,18 +1,22 @@
 import * as React from "react";
-import { List, Edit, Create, SimpleForm, TextInput, SelectInput } from 'react-admin';
+import { List, Edit, Create, SimpleForm, TextInput, SelectInput, PasswordInput, required } from 'react-admin';
 import ControlForm from './ControlForm';
-import Engines from './Engine'
+import restProvider from 'ra-data-simple-rest';
 
-export const PostList = (props) => {
+
+export const ServiceList = (props) => {
     return <List {...props}><ControlForm/></List>;
 };
 
-const PostTitle = (record) => {
-    return <span>Post {record ? `"${record.title}"` : ''}</span>;
+const ServiceTitle = (record) => {
+    return <span>Service {record ? `"${record.title}"` : ''}</span>;
 };
 
-export const PostEdit = (props) => (
-    <Edit title={<PostTitle />} {...props}>
+const engines = [];
+restProvider(window.location.protocol).getList('engines', {pagination:{}, sort:{}}).then(names=>names.data.map(name=>engines.push({id:name, name:name})));
+
+export const ServiceEdit = (props) => (
+    <Edit title={<ServiceTitle />} {...props}>
         <SimpleForm>
             <TextInput disabled source="id" />
             <TextInput source="logo" />
@@ -20,16 +24,16 @@ export const PostEdit = (props) => (
             <TextInput source="url" />
             <TextInput source="app" />
             <TextInput source="dataField" />
-            <TextInput source="credentials" />
+            <PasswordInput source="credentials" />
             <TextInput source="location" />
             <TextInput source="source" />
-            <SelectInput source="engine" choices={Engines.choices} />
+            <SelectInput validate={required()} source="engine" choices={engines} />
         </SimpleForm>
     </Edit>
 );
 
-export const PostCreate = (props) => (
-    <Create title="Create a Post" {...props}>
+export const ServiceCreate = (props) => (
+    <Create title="Create a Service" {...props}>
         <SimpleForm>
             <TextInput source="logo" />
             <TextInput source="logo_alt" />
@@ -39,7 +43,7 @@ export const PostCreate = (props) => (
             <TextInput source="credentials" />
             <TextInput source="location" />
             <TextInput source="source" />
-            <SelectInput source="engine" choices={Engines.choices} />
+            <SelectInput validate={required()} source="engine" choices={engines} />
         </SimpleForm>
     </Create>
 );

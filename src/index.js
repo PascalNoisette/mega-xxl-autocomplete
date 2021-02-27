@@ -1,13 +1,15 @@
-import React from 'react';
+import * as React from "react";
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Admin, Resource } from 'react-admin';
+import restProvider from 'ra-data-simple-rest';
+import { ServiceList, ServiceEdit, ServiceCreate } from './Services';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+  <Admin dataProvider={restProvider(window.location.protocol)}>
+    <Resource name="services" list={ServiceList} edit={ServiceEdit} create={ServiceCreate} />
+  </Admin>,
   document.getElementById('root')
 );
 

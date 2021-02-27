@@ -17,7 +17,7 @@ class ControlForm extends Component {
     super(props);
     this.state = {value: ''};
     this.services = [];
-
+    this.Progress=[];
     this.handleChange = this.handleChange.bind(this);
   }
   
@@ -34,6 +34,9 @@ class ControlForm extends Component {
   }
 
   render() {
+    const array_chunk = (array, chunk_size) => Array(Math.ceil(array.length / chunk_size)).fill().map((_, index) => index * chunk_size).map(begin => array.slice(begin, begin + chunk_size));
+    const rows = array_chunk(this.services, 3);
+    let index = 0;
     return (
         <div className="ControlForm">
             <form className="ControlFormInput">
@@ -41,10 +44,14 @@ class ControlForm extends Component {
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
             </form>
             <Grid fluid>
-                <Row>
-                    {this.services.map((service, i) => {    
+            {rows.map((row, j) => {
+              const that = this;
+              return (
+                <Row key={j}>
+                    {row.map((service) => {
+                      index++;
                   return (
-                      <Col key={i} xs={6} md={3}>
+                      <Col key={index} xs={6} md={3}>
                           <img 
                             style={{margin:"5px"}}
                             height="30px"
@@ -53,15 +60,14 @@ class ControlForm extends Component {
                           <ReactiveBase
           url={process.env.NODE_ENV === "production" ? "" + window.location : service.url}
           app={service.app}
-          credentials={service.credentials}
       >
                               <DataSearch
-                  componentId={"searchbox" + i} 
+                  componentId={"searchbox" + index} 
                   debounce={500}
-                  ref={(input) => {if (typeof(this.Progress) == "undefined"){this.Progress=[]} this.Progress[i] = input }}
+                  ref={(input) => {that.Progress.push(input) }}
                   dataField={service.dataField}
                   categoryField="NotebookId.keyword"
-                  placeholder="Search for notes"
+                  placeholder= {"Search for "+ service.app} 
                   downShiftProps={{
                     onSelect: service.onselect
                   }}
@@ -72,10 +78,12 @@ class ControlForm extends Component {
               />
                               <EditButton basePath="/posts" record={service}/>
                           </ReactiveBase>
-                      </Col>   
-                    ) 
-                  })}
-                </Row>
+                      </Col>
+                  )
+                })}
+
+                </Row>)})}
+
             </Grid>
         </div>
     );

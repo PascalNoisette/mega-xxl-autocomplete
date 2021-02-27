@@ -74,3 +74,8 @@ app.get('/', function (req, res) {
 
 
 app.listen(process.env.PORT || 8080);
+
+process.on('SIGINT', () => {
+  console.info("Interrupted")
+  process.exit(0)
+})

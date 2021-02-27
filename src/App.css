@@ -29,3 +29,15 @@ input[id$=downshift-input]{
   margin-left: 125px;
   margin-top: -15px;
 }
+.row {
+  margin-bottom: 15em;
+}
+.ControlForm ul{
+  max-height: 16em;
+}
+.suggest-legend{
+    float: left;
+    position: absolute;
+    margin-top: -1em;
+    font-size: 50%;
+}

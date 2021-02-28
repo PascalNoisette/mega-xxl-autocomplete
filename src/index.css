@@ -35,3 +35,9 @@ input[id$=downshift-input]{
 .ControlForm ul{
   max-height: 16em;
 }
+.col-xs-6 .MuiButtonBase-root {
+  visibility: hidden;
+}
+.col-xs-6 > div:hover .MuiButtonBase-root {
+  visibility: visible;
+}

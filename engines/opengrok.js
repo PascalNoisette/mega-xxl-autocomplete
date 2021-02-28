@@ -24,6 +24,7 @@ module.exports = function (service) {
                   "hits": Object.keys(results.data.results).reduce((hits, file)=>{
                     results.data.results[file].forEach(element => {
                       element.file=file + '#L' + element.lineNumber;
+                      element.title='<div class="suggest-legend">'+file.split('/').filter(x=>x).splice(0,2).join("/")+ "</div>" + element.line;
                       element._source = Object.assign({}, element);
                       hits.push(element);
                     });

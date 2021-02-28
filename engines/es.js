@@ -5,6 +5,7 @@ const https = require('https');
 module.exports = function (service) { 
   return Object.assign({}, service, {
     request: (clitentReq, clientRes) => {
+      delete clitentReq.headers.authorization;
         axios({
           auth: {
             username: service.credentials.split(':')[0],

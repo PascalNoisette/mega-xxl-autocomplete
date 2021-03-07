@@ -83,8 +83,9 @@ class ControlForm extends Component {
                         })"
                         downShiftProps={{
                           onSelect: (value) => {
-                            window.location =
-                              service.location + value.source[service.source];
+                            window.open(
+                              service.location + value.source[service.source]
+                            );
                           }
                         }}
                       />

@@ -76,3 +76,6 @@ input[id$=downshift-input]{
   width: 100%;
 
 }
+.MuiCardContent-root{
+  display: none;
+}

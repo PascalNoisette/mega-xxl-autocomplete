@@ -1,19 +1,35 @@
-import * as React from "react";
-import { List, Edit, Create, SimpleForm, TextInput, SelectInput, PasswordInput, required } from 'react-admin';
+import * as React from 'react';
+import {
+  List,
+  Edit,
+  Create,
+  SimpleForm,
+  TextInput,
+  SelectInput,
+  PasswordInput,
+  required
+} from 'react-admin';
 import ControlForm from './ControlForm';
 import restProvider from 'ra-data-simple-rest';
 
-
 export const ServiceList = (props) => {
-    return <List {...props}><ControlForm/></List>;
+  return (
+      <List {...props}>
+          <ControlForm />
+      </List>
+  );
 };
 
 const ServiceTitle = (record) => {
-    return <span>Service {record ? `"${record.title}"` : ''}</span>;
+  return <span>Service {record ? `"${record.title}"` : ''}</span>;
 };
 
 const engines = [];
-restProvider(window.location.protocol).getList('engines', {pagination:{}, sort:{}}).then(names=>names.data.map(name=>engines.push({id:name, name:name})));
+restProvider(window.location.protocol)
+  .getList('engines', { pagination: {}, sort: {} })
+  .then((names) =>
+    names.data.map((name) => engines.push({ id: name, name: name }))
+  );
 
 export const ServiceEdit = (props) => (
     <Edit title={<ServiceTitle />} {...props}>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -7,9 +7,14 @@ import restProvider from 'ra-data-simple-rest';
 import { ServiceList, ServiceEdit, ServiceCreate } from './Services';
 
 ReactDOM.render(
-  <Admin dataProvider={restProvider(window.location.protocol)}>
-    <Resource name="services" list={ServiceList} edit={ServiceEdit} create={ServiceCreate} />
-  </Admin>,
+    <Admin dataProvider={restProvider(window.location.protocol)}>
+        <Resource
+      name="services"
+      list={ServiceList}
+      edit={ServiceEdit}
+      create={ServiceCreate}
+    />
+    </Admin>,
   document.getElementById('root')
 );
 

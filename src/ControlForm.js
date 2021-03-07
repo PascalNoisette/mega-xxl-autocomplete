@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
 import { EditButton } from 'react-admin';
+import Suggestion from './Suggestion';
 
 class ControlForm extends Component {
   componentDidMount() {
@@ -74,6 +75,12 @@ class ControlForm extends Component {
                           that.Progress.push(input);
                         }}
                         dataField={service.dataField}
+                        render={Suggestion}
+                        Suggestion="suggestion => ({
+                          label: `${suggestion._source[service.dataField].replace(/<[^>]*>?/gm, '')} - ${suggestion._source[service.categoryField]}`,
+                          value: suggestion._source[service.dataField].replace(/<[^>]*>?/gm, ''),
+                          source: suggestion._source  // for onValueSelected to work with renderSuggestion
+                        })"
                         downShiftProps={{
                           onSelect: (value) => {
                             window.location =

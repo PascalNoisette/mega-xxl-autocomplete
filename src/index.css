@@ -35,6 +35,18 @@ input[id$=downshift-input]{
 .ControlForm ul{
   max-height: 16em;
   top: -1em;
+  border: 1px solid rgb(204, 204, 204);
+  background-color: rgb(255, 255, 255);
+  padding-top: 2px;
+}
+.ControlForm li {
+  display: flex;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+.ControlForm li:hover {
+  background-color: rgb(238, 238, 238);
 }
 .cell .MuiButtonBase-root {
   visibility: hidden;
@@ -54,5 +66,13 @@ input[id$=downshift-input]{
   overflow-y: scroll;
   overflow-x: hidden;
   margin-top: -1em;
-  padding: 5px;
+  padding: 0px;
+}
+.suggest-legend{
+  margin-top: -1em;
+  padding: 0px;
+  font-size: x-small;
+  margin-right: -100%;
+  width: 100%;
+
 }

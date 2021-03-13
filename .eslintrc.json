@@ -6,12 +6,17 @@
     ],
     "env": {
         "browser": true,
-        "node": true
+        "node": true,
+        "es6": true
     },
     "rules": {
-        "react/jsx-indent":"warn"
+        "react/jsx-indent":"warn",
+        "react/react-in-jsx-scope": "off"
     },
     "plugins": [
-        "prettier" 
-    ]
+        "prettier"
+    ],
+    "globals": {
+        "React": "writable"
+    }
 }

@@ -1,6 +1,5 @@
 FROM node:10-slim
 WORKDIR /app
 COPY . .
-RUN npm install
-RUN yarn build
-CMD node index.js
+RUN npm install && npm run build
+CMD npm run start

@@ -41,7 +41,7 @@ parameters:
     type: string
 
 paths:
-  /services:
+  /api/swagger/services:
     get:
       description: Returns all services
       responses:
@@ -76,7 +76,7 @@ paths:
               type: string
               description: The URL of the newly-added service
 
-  /services/{serviceId}:
+  /api/swagger/services/{serviceId}:
     parameters:
       - $ref: "#/parameters/serviceId"
 
@@ -114,15 +114,3 @@ paths:
           description: Returns the updated service data
           schema:
             $ref: "#/definitions/service"
-
-  /:
-    get:
-      produces:
-        - text/html
-      responses:
-        default:
-          description: The React Frontend
-          schema:
-            type: file
-            default:
-              $ref: "../build/index.html"

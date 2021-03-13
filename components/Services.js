@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   List,
   Edit,
@@ -20,12 +19,13 @@ export const ServiceList = (props) => {
   );
 };
 
+
 const ServiceTitle = (record) => {
   return <span>Service {record ? `"${record.title}"` : ''}</span>;
 };
 
 const engines = [];
-restProvider(window.location.protocol)
+restProvider(window.location.protocol + "/api")
   .getList('engines', { pagination: {}, sort: {} })
   .then((names) =>
     names.data.map((name) => engines.push({ id: name, name: name }))

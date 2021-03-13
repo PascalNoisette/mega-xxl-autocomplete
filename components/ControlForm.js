@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
 import { EditButton } from 'react-admin';
 import Suggestion from './Suggestion';
 
 class ControlForm extends Component {
   componentDidMount() {
-    const apiUrl = window.location.protocol + '/services';
+    const apiUrl = window.location.protocol + '/api/swagger/services';
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => (this.services = data));
@@ -66,8 +66,8 @@ class ControlForm extends Component {
                       src={service.logo}
                       alt={service.logo_alt}
                     />
-                        <ReactiveBase url={'' + window.location} app={service.app}>
-                            <EditButton basePath="/services" record={service} />
+                        <ReactiveBase url={window.location + ''} app={'api/search/' + service.app}>
+                            <EditButton basePath="/api/swagger/services" record={service} />
                             <DataSearch
                         componentId={'searchbox' + index}
                         debounce={500}

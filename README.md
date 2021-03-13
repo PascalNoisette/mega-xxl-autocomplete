@@ -12,7 +12,7 @@ Features :
 
 ## Run with docker
 
-```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:1.4```
+```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:2.0```
 
 ```docker-compose.yml 
 version: '2'

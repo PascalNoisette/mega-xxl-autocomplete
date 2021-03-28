@@ -1,21 +1,21 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+        Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 .MuiDrawer-docked {
     display: none;
 }
-.MuiTablePagination-root{
+.MuiTablePagination-root {
     display: none;
 }
-.MuiAppBar-root{
-    display: none!important;
+.MuiAppBar-root {
+    display: none !important;
 }
-.RaLayout-appFrame-2{
-    margin: 0!important;
+.RaLayout-appFrame-2 {
+    margin: 0 !important;
 }
 .ControlForm .cell {
     float: left;
@@ -23,7 +23,8 @@ body {
     width: 15em;
     padding: 1px;
 }
-.ControlForm .cell input, .ControlForm .cell svg.search-icon {
+.ControlForm .cell input,
+.ControlForm .cell svg.search-icon {
     /*display: none;*/
 }
 .ControlFormInput input {
@@ -44,7 +45,7 @@ body {
     overflow-y: scroll;
     border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
-    padding:0;
+    padding: 0;
     margin: 0;
 }
 .ControlForm li {

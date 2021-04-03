@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, ChangeEvent, ReactNode } from 'react';
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
 import { EditButton } from 'react-admin';
 import Suggestion from './Suggestion';
@@ -6,14 +6,15 @@ import Suggestion from './Suggestion';
 class ControlForm extends Component<{}, { value: string }> {
     services: any;
     Progress: any[];
-    componentDidMount() {
+
+    componentDidMount(): void {
         const apiUrl = window.location.protocol + '/api/swagger/services';
         fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => (this.services = data));
     }
 
-    constructor(props) {
+    constructor(props: {}) {
         super(props);
         this.state = { value: '' };
         this.services = [];
@@ -21,7 +22,7 @@ class ControlForm extends Component<{}, { value: string }> {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
+    handleChange(event: ChangeEvent<{ value: string }>): void {
         this.setState({ value: event.target.value });
         this.Progress.forEach((e) => {
             if (e) {
@@ -33,7 +34,7 @@ class ControlForm extends Component<{}, { value: string }> {
         });
     }
 
-    render() {
+    render(): ReactNode {
         const rows = [this.services];
         let index = 0;
         return (
@@ -83,10 +84,17 @@ class ControlForm extends Component<{}, { value: string }> {
                                                 }}
                                                 dataField={service.dataField}
                                                 render={Suggestion}
+                                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                                // @ts-ignore
+                                                Suggestion="suggestion => ({
+                                                    label: `${suggestion._source[service.dataField].replace(/<[^>]*>?/gm, '')} - ${suggestion._source[service.categoryField]}`,
+                                                    value: suggestion._source[service.dataField].replace(/<[^>]*>?/gm, ''),
+                                                    source: suggestion._source  // for onValueSelected to work with renderSuggestion
+                                                  })"
                                                 downShiftProps={{
                                                     onSelect: (value) => {
                                                         window.open(
-                                                            service.location +
+                                                            (service.location || '') +
                                                                 value.source[
                                                                     service.source
                                                                 ]

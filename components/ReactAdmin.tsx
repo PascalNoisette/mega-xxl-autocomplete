@@ -1,10 +1,11 @@
 import { Admin, Resource } from 'react-admin';
 import restProvider from 'ra-data-simple-rest';
 import { ServiceList, ServiceEdit, ServiceCreate } from './Services';
+import { ReactNode } from 'react';
 
 const dataProvider = restProvider(window.location.protocol);
 
-const ReactAdmin = () => {
+const ReactAdmin = (): ReactNode => {
     return (
         <Admin dataProvider={dataProvider}>
             <Resource

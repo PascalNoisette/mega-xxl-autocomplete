@@ -84,3 +84,7 @@ footer a {
 footer img {
     height: 1em;
 }
+
+.suggest-legend {
+    font-size: 80%;
+}

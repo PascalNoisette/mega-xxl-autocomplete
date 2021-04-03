@@ -1,11 +1,14 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { ReactNode } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const ReactAdmin = dynamic(() => import('../components/ReactAdmin'), {
     ssr: false
 });
 
-export default function Home() {
+export default function Home(): ReactNode {
     return (
         <div>
             <Head>

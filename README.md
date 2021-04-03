@@ -2,6 +2,11 @@
 
 Dashboard to search accross several endpoint.
 
+<a href="https://github.com/PascalNoisette/mega-xxl-autocomplete/actions">
+  <img src="https://github.com/PascalNoisette/mega-xxl-autocomplete/workflows/CI/badge.svg" alt="CI Status">
+</a>
+
+
 ![alt text](./docs/screenshot.png)
 
 Features :

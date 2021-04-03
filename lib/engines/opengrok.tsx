@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { NextApiRequest, NextApiResponse } from 'next';
 export default class Opengrok {
     service: { url: string; credentials: string };
 
@@ -7,7 +7,7 @@ export default class Opengrok {
         this.service = service;
     }
 
-    request(clitentReq, clientRes) {
+    request(clitentReq: NextApiRequest, clientRes: NextApiResponse): Promise<any> {
         const service = this.service;
         const keyword = JSON.parse(clitentReq.body.split('\n')[1]).query.bool.must[0].bool
             .must.bool.should[0].multi_match.query;

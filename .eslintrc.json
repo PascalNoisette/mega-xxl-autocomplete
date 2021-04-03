@@ -14,7 +14,14 @@
     "rules": {
         "react/jsx-indent":"warn",
         "react/react-in-jsx-scope": "off",
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "@typescript-eslint/no-this-alias": [
+            "error",
+            {
+                "allowDestructuring": true, // Allow `const { props, state } = this`; false by default
+                "allowedNames": ["that"] // Allow `const that = this`; `[]` by default
+            }
+        ]
     },
     "plugins": [
         "prettier"

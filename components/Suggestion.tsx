@@ -1,8 +1,9 @@
 import Loader from 'react-loader-spinner';
 import Alert from '@material-ui/lab/Alert';
+import { ReactNode } from 'react';
 
-export default function Suggestion() {
-    const { loading, error, data, value, downshiftProps = {} } = arguments[0];
+export default function Suggestion(...args: any[]): ReactNode {
+    const { loading, error, data, value, downshiftProps = {} } = args[0];
     const { isOpen, getItemProps } = downshiftProps;
     if (loading) {
         return (

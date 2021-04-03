@@ -1,13 +1,14 @@
 import axios from 'axios';
-
-export default class Redmine {
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Engine } from '../engine';
+export default class Redmine implements Engine {
     service: { url: string; credentials: string };
 
     constructor(service: { url: string; credentials: string }) {
         this.service = service;
     }
 
-    request(clitentReq, clientRes) {
+    request(clitentReq: NextApiRequest, clientRes: NextApiResponse): Promise<any> {
         const service = this.service;
         const keyword = JSON.parse(clitentReq.body.split('\n')[1]).query.bool.must[0].bool
             .must.bool.should[0].multi_match.query;

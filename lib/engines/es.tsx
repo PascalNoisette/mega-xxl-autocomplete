@@ -1,14 +1,16 @@
 import axios from 'axios';
 import https from 'https';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Engine } from '../engine';
 
-export default class Es {
+export default class Es implements Engine {
     service: { url: string; credentials: string };
 
     constructor(service: { url: string; credentials: string }) {
         this.service = service;
     }
 
-    request(clitentReq, clientRes) {
+    request(clitentReq: NextApiRequest, clientRes: NextApiResponse): Promise<any> {
         const service = this.service;
         delete clitentReq.headers.authorization;
         return axios({
@@ -17,7 +19,7 @@ export default class Es {
                 password: service.credentials.split(':')[1]
             },
             headers: clitentReq.headers,
-            method: clitentReq.method,
+            method: 'POST',
             url: service.url + clitentReq.url.replace('/api/search/', '/'),
             responseType: 'stream',
             data: clitentReq.body,

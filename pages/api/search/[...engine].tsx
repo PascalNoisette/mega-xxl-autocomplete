@@ -7,8 +7,8 @@ const myDB = new FileDataStore(process.cwd() + '/data');
 const Engines = {};
 const AppData = {};
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-    await basicAuth(myDB)(req, res, async function () {
+export default async (req: NextApiRequest, res: NextApiResponse): Promise<boolean> => {
+    return await basicAuth(myDB)(req, res, async function () {
         const requestedService = req.query.engine[0];
         const user = req.headers.authorization || '';
         if (typeof AppData[user] == 'undefined') {
@@ -19,8 +19,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 myDB.getCollection(
                     '/api/swagger/services',
                     function callback(err, services) {
+                        if (err) {
+                            reject(err);
+                        }
                         services.map((x) => {
                             if (typeof Engines[x.data.engine] == 'undefined') {
+                                // eslint-disable-next-line  @typescript-eslint/no-var-requires
                                 Engines[x.data.engine] = require('../../../lib/engines/' +
                                     x.data.engine +
                                     '.tsx').default;

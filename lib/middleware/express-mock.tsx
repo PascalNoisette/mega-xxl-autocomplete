@@ -2,9 +2,32 @@ import vary from 'vary';
 import accepts from 'accepts';
 import async from 'async';
 import typeis from 'type-is';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { NextFunctionReturn, NextFunction } from '../middleware';
+interface ExpressRequest {
+    path: string;
+    baseUrl: string;
+    is: (consume: string) => boolean;
+    get: (key: string) => string | string[];
+    set: (key: string, value: string) => void;
+    accepts: (url: string) => void;
+}
+interface ExpressResponse {
+    body: boolean;
+    headers: NodeJS.Dict<string | string[]>;
+    location: (url: string) => void;
+    type: (url: string) => void;
+    vary: (url: string) => void;
+    set: (key: string, value: string) => void;
+    get: (key: string) => string | string[];
+}
 
 /* Adapter for NextApiRequest and NextApiResponse to work like Express */
-export default (req, res, next) => {
+export default (
+    req: NextApiRequest & ExpressRequest,
+    res: NextApiResponse & ExpressResponse,
+    next: NextFunction
+): NextFunctionReturn => {
     req.path = req.url.split('?')[0];
     req.baseUrl = '';
     res.body = false;
@@ -16,22 +39,24 @@ export default (req, res, next) => {
     req.get = (name) => req.headers?.[name];
     req.set = (name, value) => (req.headers[name] = value);
     res.set = (name, value) => {
-        console.log([name, value]);
         res.setHeader(name, value);
     };
     res.get = (name) => {
-        res.headers?.[name];
+        return res.headers?.[name];
     };
     res.type = (ct) => {
         res.set('Content-Type', ct);
     };
     res.vary = (value) => vary(res, value);
     req.accepts = accepts.bind(res);
-    req.send;
-    next();
+    return next(req, res);
 };
 
-export const useMiddleware = (swaggerMiddlewares, req, res) => {
+export const useMiddleware = (
+    swaggerMiddlewares: NextFunctionReturn[],
+    req: NextApiRequest,
+    res: NextApiResponse
+): Promise<void> => {
     return async.series(
         swaggerMiddlewares.map((middleware) => (resolve: () => void) => {
             if (['jsonParser', 'mockResponseBody'].indexOf(middleware.name) != -1) {

@@ -10,8 +10,9 @@ import {
 } from 'react-admin';
 import ControlForm from './ControlForm';
 import restProvider from 'ra-data-simple-rest';
+import { FunctionComponent } from 'react';
 
-export const ServiceList = (props) => {
+export const ServiceList: FunctionComponent<any> = (props) => {
     return (
         <List {...props}>
             <ControlForm />
@@ -32,7 +33,7 @@ restProvider(window.location.protocol + '/api')
     })
     .then((names) => names.data.map((name) => engines.push({ id: name, name: name })));
 
-export const ServiceEdit = (props) => (
+export const ServiceEdit: FunctionComponent<any> = (props) => (
     <Edit title={<ServiceTitle />} {...props}>
         <SimpleForm>
             <TextInput disabled source="id" />
@@ -49,7 +50,7 @@ export const ServiceEdit = (props) => (
     </Edit>
 );
 
-export const ServiceCreate = (props) => (
+export const ServiceCreate: FunctionComponent<any> = (props) => (
     <Create title="Create a Service" {...props}>
         <SimpleForm>
             <TextInput source="logo" />

@@ -1,4 +1,12 @@
-export default (myDb) => (req, res, next) => {
+import { NextApiRequest, NextApiResponse } from 'next';
+import CypherDataStore from '../cypher-datastore';
+import { NextFunction, NextFunctionReturn } from '../middleware';
+
+export default (myDb: CypherDataStore) => (
+    req: NextApiRequest,
+    res: NextApiResponse,
+    next: NextFunction
+): NextFunctionReturn => {
     // parse login and password from headers
     const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
     const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':');
@@ -6,7 +14,7 @@ export default (myDb) => (req, res, next) => {
     // Server must be requested with basic auth
     if (login && password) {
         myDb.setPassword(password);
-        return next();
+        return next(req, res);
     }
     res.setHeader('WWW-Authenticate', 'Basic realm="401"');
     res.status(401).send('Authentication required.');

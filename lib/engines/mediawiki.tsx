@@ -1,10 +1,15 @@
-const Bot = require('nodemw');
+import Bot from 'nodemw';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Engine } from '../engine';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 
 if (typeof fs.existsSync == 'undefined') {
-    fs.existsSync = () => {};
+    fs.existsSync = () => {
+        // emulate function on web
+    };
 }
-export default class Mediawiki {
+export default class Mediawiki implements Engine {
     service: { url: string; credentials: string };
 
     mediawikibot;
@@ -13,7 +18,7 @@ export default class Mediawiki {
         this.service = service;
     }
 
-    request(clitentReq, clientRes) {
+    request(clitentReq: NextApiRequest, clientRes: NextApiResponse): Promise<any> {
         return new Promise((resolve, turnDown) => {
             try {
                 this.loginRequest(() =>
@@ -30,7 +35,7 @@ export default class Mediawiki {
         });
     }
 
-    loginRequest(callback) {
+    loginRequest(callback: () => void): void {
         if (this.mediawikibot != null) {
             return callback();
         }
@@ -61,7 +66,11 @@ export default class Mediawiki {
         }
     }
 
-    searchRequest(clitentReq, clientRes, callback) {
+    searchRequest(
+        clitentReq: NextApiRequest,
+        clientRes: NextApiResponse,
+        callback: (status: boolean) => void
+    ): void {
         const keyword = JSON.parse(clitentReq.body.split('\n')[1]).query.bool.must[0].bool
             .must.bool.should[0].multi_match.query;
 

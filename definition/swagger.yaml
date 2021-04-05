@@ -19,6 +19,8 @@ definitions:
         type: "string"
       url:
         type: "string"
+      has_search:
+        type: "boolean"
       app:
         type: "string"
       dataField:
@@ -32,6 +34,12 @@ definitions:
       engine:
         type: "string"
         required: true
+  service-filters:
+    - name: has_search
+      in: query
+      description: Filters service than profide a search engine
+      required: false
+      type: boolean
 
 parameters:
   serviceId:
@@ -44,6 +52,8 @@ paths:
   /api/swagger/services:
     get:
       description: Returns all services
+      parameters:
+        $ref: '#/definitions/service-filters'
       responses:
         default:
           description: Returns the matching services

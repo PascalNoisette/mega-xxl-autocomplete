@@ -88,3 +88,18 @@ footer img {
 .suggest-legend {
     font-size: 80%;
 }
+.MuiToolbar-root .toggleEdit {
+    margin: -2em 0em -1em 1em;
+}
+.dash {
+    padding-left: 1em;
+}
+.toggleEdit {
+    display: none!important;
+}
+.toggleEdit.active {
+    display: block!important;
+}
+.globalEdit {
+    padding-left: 1em;
+}

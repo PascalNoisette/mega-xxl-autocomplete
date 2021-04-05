@@ -1,22 +1,46 @@
 import {
-    List,
+    CreateButton,
+    Button,
+    Toolbar,
     Edit,
     Create,
     SimpleForm,
     TextInput,
     SelectInput,
     PasswordInput,
+    BooleanInput,
+    FormDataConsumer,
     required
 } from 'react-admin';
+import CreateButtonIcon from '@material-ui/icons/Create';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 import ControlForm from './ControlForm';
+import Dash from './Dash';
 import restProvider from 'ra-data-simple-rest';
 import { FunctionComponent } from 'react';
 
-export const ServiceList: FunctionComponent<any> = (props) => {
+export const ServiceList: FunctionComponent<any> = () => {
+    let toggle: boolean = true;
     return (
-        <List {...props}>
+        <>
+            <Toolbar>
+                <CreateButton basePath="services" />
+                <Button
+                    label="Edit"
+                    aria-label="list"
+                    onClick={() => {
+                        Array.from(
+                            document.getElementsByClassName('toggleEdit')
+                        ).forEach((element) => element.classList.toggle('active'));
+                        toggle = !toggle;
+                    }}
+                >
+                    {toggle ? <CreateButtonIcon /> : <BorderColorIcon />}
+                </Button>
+                <Dash />
+            </Toolbar>
             <ControlForm />
-        </List>
+        </>
     );
 };
 
@@ -40,14 +64,33 @@ export const ServiceEdit: FunctionComponent<any> = (props) => (
             <TextInput source="logo" />
             <TextInput source="logo_alt" />
             <TextInput source="url" />
-            <TextInput source="app" />
-            <TextInput source="dataField" />
-            <PasswordInput source="credentials" />
-            <TextInput source="location" />
-            <TextInput source="source" />
-            <SelectInput validate={required()} source="engine" choices={engines} />
+            <SearchFields />
         </SimpleForm>
     </Edit>
+);
+
+export const SearchFields: FunctionComponent<any> = () => (
+    <>
+        <BooleanInput source="has_search" defaultValue={false} />
+        <FormDataConsumer>
+            {({ formData }) =>
+                formData.has_search && (
+                    <span>
+                        <TextInput source="app" />
+                        <TextInput source="dataField" />
+                        <PasswordInput source="credentials" />
+                        <TextInput source="location" />
+                        <TextInput source="source" />
+                        <SelectInput
+                            validate={required()}
+                            source="engine"
+                            choices={engines}
+                        />
+                    </span>
+                )
+            }
+        </FormDataConsumer>
+    </>
 );
 
 export const ServiceCreate: FunctionComponent<any> = (props) => (
@@ -56,12 +99,7 @@ export const ServiceCreate: FunctionComponent<any> = (props) => (
             <TextInput source="logo" />
             <TextInput source="logo_alt" />
             <TextInput source="url" />
-            <TextInput source="app" />
-            <TextInput source="dataField" />
-            <TextInput source="credentials" />
-            <TextInput source="location" />
-            <TextInput source="source" />
-            <SelectInput validate={required()} source="engine" choices={engines} />
+            <SearchFields />
         </SimpleForm>
     </Create>
 );

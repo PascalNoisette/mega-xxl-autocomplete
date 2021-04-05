@@ -23,6 +23,9 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<boolea
                             reject(err);
                         }
                         services.map((x) => {
+                            if (typeof x.data.engine == 'undefined') {
+                                return;
+                            }
                             if (typeof Engines[x.data.engine] == 'undefined') {
                                 // eslint-disable-next-line  @typescript-eslint/no-var-requires
                                 Engines[x.data.engine] = require('../../../lib/engines/' +

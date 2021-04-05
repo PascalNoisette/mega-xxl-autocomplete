@@ -8,7 +8,7 @@ class ControlForm extends Component<{}, { value: string }> {
     Progress: any[];
 
     componentDidMount(): void {
-        const apiUrl = window.location.protocol + '/api/swagger/services';
+        const apiUrl = window.location.protocol + '/api/swagger/services?has_search=true';
         fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => (this.services = data));
@@ -62,12 +62,20 @@ class ControlForm extends Component<{}, { value: string }> {
                                 index++;
                                 return (
                                     <div key={index} className="cell">
-                                        <img
-                                            style={{ margin: '5px' }}
-                                            height="30px"
-                                            src={service.logo}
-                                            alt={service.logo_alt}
-                                        />
+                                        <a
+                                            href={service.location || service.url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            key={index}
+                                            title={service.logo_alt}
+                                        >
+                                            <img
+                                                style={{ margin: '5px' }}
+                                                height="30px"
+                                                src={service.logo}
+                                                alt={service.logo_alt}
+                                            />
+                                        </a>
                                         <ReactiveBase
                                             url={window.location + ''}
                                             app={'api/search/' + service.app}
@@ -75,6 +83,7 @@ class ControlForm extends Component<{}, { value: string }> {
                                             <EditButton
                                                 basePath="/api/swagger/services"
                                                 record={service}
+                                                className="toggleEdit"
                                             />
                                             <DataSearch
                                                 componentId={'searchbox' + index}

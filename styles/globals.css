@@ -96,11 +96,14 @@ footer img {
 }
 .dash {
     padding-left: 1em;
+    width: 35px;
+    display: inline-block;
+    overflow: hidden;
 }
-.toggleEdit {
+.toggleEdit, .ControlForm .ControlFormAdvanced input, .ControlForm .ControlFormAdvanced svg.search-icon {
     display: none!important;
 }
-.toggleEdit.active {
+.toggleEdit.active, .ControlForm.active .ControlFormAdvanced input, .ControlForm.active .ControlFormAdvanced svg.search-icon {
     display: block!important;
 }
 .globalEdit {
@@ -109,5 +112,11 @@ footer img {
 @media screen and (max-width: 960px) {
     a.RaEditButton{
         bottom: 120px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    a.RaSearchButton{
+        bottom: 180px;
     }
 }

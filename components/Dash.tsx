@@ -5,8 +5,7 @@ class Dash extends Component<{}, { value: string }> {
     services: any;
 
     componentDidMount(): void {
-        const apiUrl =
-            window.location.protocol + '/api/swagger/services?has_search=false';
+        const apiUrl = window.location.protocol + '/api/swagger/services';
         fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => (this.services = data));

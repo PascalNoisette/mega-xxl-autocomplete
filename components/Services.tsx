@@ -12,6 +12,7 @@ import {
     required
 } from 'react-admin';
 import CreateButtonIcon from '@material-ui/icons/Create';
+import SearchIcon from '@material-ui/icons/Search';
 import ControlForm from './ControlForm';
 import Dash from './Dash';
 import restProvider from 'ra-data-simple-rest';
@@ -32,6 +33,20 @@ export const ServiceList: FunctionComponent<any> = () => {
                         Array.from(
                             document.getElementsByClassName('toggleEdit')
                         ).forEach((element) => element.classList.toggle('active'));
+                        e.preventDefault();
+                        return false;
+                    }}
+                />
+                <CreateButton
+                    className="RaSearchButton"
+                    label="Advanced"
+                    icon={<SearchIcon />}
+                    color="default"
+                    aria-label="list"
+                    onClick={(e) => {
+                        document
+                            .getElementsByClassName('ControlForm')[0]
+                            .classList.toggle('active');
                         e.preventDefault();
                         return false;
                     }}

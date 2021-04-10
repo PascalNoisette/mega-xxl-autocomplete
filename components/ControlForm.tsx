@@ -57,7 +57,7 @@ class ControlForm extends Component<{}, { value: string }> {
                 {rows.map((row, j) => {
                     const that = this;
                     return (
-                        <div key={j}>
+                        <div className="ControlFormAdvanced" key={j}>
                             {row.map((service) => {
                                 index++;
                                 return (

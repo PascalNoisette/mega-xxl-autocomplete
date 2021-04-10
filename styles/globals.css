@@ -88,6 +88,9 @@ footer img {
 .suggest-legend {
     font-size: 80%;
 }
+.MuiToolbar-root {
+    display: block!important;
+}
 .MuiToolbar-root .toggleEdit {
     margin: -2em 0em -1em 1em;
 }
@@ -102,4 +105,9 @@ footer img {
 }
 .globalEdit {
     padding-left: 1em;
+}
+@media screen and (max-width: 960px) {
+    a.RaEditButton{
+        bottom: 120px;
+    }
 }

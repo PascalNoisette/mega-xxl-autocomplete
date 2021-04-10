@@ -1,6 +1,5 @@
 import {
     CreateButton,
-    Button,
     Toolbar,
     Edit,
     Create,
@@ -13,30 +12,30 @@ import {
     required
 } from 'react-admin';
 import CreateButtonIcon from '@material-ui/icons/Create';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
 import ControlForm from './ControlForm';
 import Dash from './Dash';
 import restProvider from 'ra-data-simple-rest';
 import { FunctionComponent } from 'react';
 
 export const ServiceList: FunctionComponent<any> = () => {
-    let toggle: boolean = true;
     return (
         <>
             <Toolbar>
                 <CreateButton basePath="services" />
-                <Button
-                    label="Edit"
+                <CreateButton
+                    className="RaEditButton"
+                    label="edit"
+                    icon={<CreateButtonIcon />}
+                    color="secondary"
                     aria-label="list"
-                    onClick={() => {
+                    onClick={(e) => {
                         Array.from(
                             document.getElementsByClassName('toggleEdit')
                         ).forEach((element) => element.classList.toggle('active'));
-                        toggle = !toggle;
+                        e.preventDefault();
+                        return false;
                     }}
-                >
-                    {toggle ? <CreateButtonIcon /> : <BorderColorIcon />}
-                </Button>
+                />
                 <Dash />
             </Toolbar>
             <ControlForm />

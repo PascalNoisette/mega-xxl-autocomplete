@@ -4,14 +4,20 @@ import { EditButton } from 'react-admin';
 import Suggestion from './Suggestion';
 
 class ControlForm extends Component<{}, { value: string }> {
-    services: any;
+    services: any = [];
     Progress: any[];
 
     componentDidMount(): void {
         const apiUrl = window.location.protocol + '/api/swagger/services?has_search=true';
         fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => (this.services = data));
+            .then((response) => {
+                if (response.status != 200) {
+                    return [];
+                }
+                return response.json();
+            })
+            .then((data) => (this.services = data))
+            .then(() => this.forceUpdate());
     }
 
     constructor(props: {}) {
@@ -35,6 +41,9 @@ class ControlForm extends Component<{}, { value: string }> {
     }
 
     render(): ReactNode {
+        if (this.services.length == 0) {
+            return <div />;
+        }
         const rows = [this.services];
         let index = 0;
         return (

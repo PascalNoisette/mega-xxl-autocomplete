@@ -2,13 +2,19 @@ import { Component, ReactNode } from 'react';
 import { EditButton } from 'react-admin';
 
 class Dash extends Component<{}, { value: string }> {
-    services: any;
+    services: any = [];
 
     componentDidMount(): void {
         const apiUrl = window.location.protocol + '/api/swagger/services';
         fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => (this.services = data));
+            .then((response) => {
+                if (response.status != 200) {
+                    return [];
+                }
+                return response.json();
+            })
+            .then((data) => (this.services = data))
+            .then(() => this.forceUpdate());
     }
 
     constructor(props: {}) {
@@ -17,6 +23,9 @@ class Dash extends Component<{}, { value: string }> {
     }
 
     render(): ReactNode {
+        if (this.services.length == 0) {
+            return <div />;
+        }
         const rows = this.services;
         let index = 0;
         return rows.map((service) => {

@@ -23,10 +23,7 @@ body {
     width: 15em;
     padding: 1px;
 }
-.ControlForm .cell input,
-.ControlForm .cell svg.search-icon {
-    /*display: none;*/
-}
+
 .ControlFormInput input {
     padding: 8px 12px;
     border: 1px solid #ccc;
@@ -88,22 +85,19 @@ footer img {
 .suggest-legend {
     font-size: 80%;
 }
-.MuiToolbar-root {
-    display: block!important;
-}
-.MuiToolbar-root .toggleEdit {
-    margin: -2em 0em -1em 1em;
-}
 .dash {
     padding-left: 1em;
     width: 35px;
     display: inline-block;
     overflow: hidden;
 }
-.toggleEdit, .ControlForm .ControlFormAdvanced input, .ControlForm .ControlFormAdvanced svg.search-icon {
+.toggleEdit, .ControlForm .ControlableForm input, .ControlForm .ControlableForm svg.search-icon {
     display: none!important;
 }
-.toggleEdit.active, .ControlForm.active .ControlFormAdvanced input, .ControlForm.active .ControlFormAdvanced svg.search-icon {
+.toggleEdit.active {
+    display: inline!important;
+}
+.ControlForm.active .ControlableForm input, .ControlForm.active .ControlableForm svg.search-icon {
     display: block!important;
 }
 .globalEdit {
@@ -113,10 +107,10 @@ footer img {
     a.RaEditButton{
         bottom: 120px;
     }
-}
-
-@media screen and (max-width: 960px) {
     a.RaSearchButton{
         bottom: 180px;
+    }
+    .MuiToolbar-regular, .MuiToolbar-root{
+        min-height: 0!important;
     }
 }

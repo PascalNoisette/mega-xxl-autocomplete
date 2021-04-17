@@ -6,12 +6,11 @@ class Dash extends Component<{ record?: Service }, { value: string }> {
     render(): ReactNode {
         const service = this.props.record;
         return (
-            <span>
+            <span className="dash">
                 <a
                     href={service.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="dash"
                     title={service.logo_alt}
                 >
                     <img

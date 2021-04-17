@@ -1,14 +1,13 @@
 import { Component, ReactNode } from 'react';
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
-import { EditButton } from 'react-admin';
 import Suggestion from './Search/Suggestion';
 import { Service } from './Interface/Service';
 class Search extends Component<{ record?: Service; inputsToControl: ReactNode[] }, {}> {
     render(): ReactNode {
         const service = this.props.record;
-        const index = 1; //@TODO;
+        const index = service.id;
         return (
-            <div className="cell">
+            <div className="cell" id={'cell-' + index}>
                 <a
                     href={service.location || service.url}
                     target="_blank"
@@ -26,11 +25,6 @@ class Search extends Component<{ record?: Service; inputsToControl: ReactNode[] 
                     url={window.location + ''}
                     app={'api/search/' + service.app}
                 >
-                    <EditButton
-                        basePath="/api/swagger/services"
-                        record={service}
-                        className="toggleEdit"
-                    />
                     <DataSearch
                         componentId={'searchbox' + index}
                         debounce={500}
@@ -38,7 +32,17 @@ class Search extends Component<{ record?: Service; inputsToControl: ReactNode[] 
                             this.props.inputsToControl.push(input);
                         }}
                         dataField={service.dataField}
-                        render={Suggestion}
+                        render={(res) => {
+                            const cell = document.getElementById('cell-' + index);
+                            if (cell) {
+                                if (res.data.length < 1) {
+                                    cell.classList.remove('active');
+                                } else {
+                                    cell.classList.add('active');
+                                }
+                            }
+                            return Suggestion(res);
+                        }}
                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                         // @ts-ignore
                         Suggestion="suggestion => ({

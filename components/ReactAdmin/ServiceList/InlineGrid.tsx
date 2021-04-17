@@ -6,9 +6,9 @@ import { useDatagridStyles, DatagridLoading, DatagridProps } from 'react-admin';
 
 const InlineGrid: FC<
     DatagridProps & { filter?: (any) => any; className?: string }
-> = React.forwardRef((props) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+> = React.forwardRef((props, _ref) => {
     const classes = useDatagridStyles(props);
-    // eslint-disable-next-line react/prop-types
     const { children, filter, className } = props;
 
     const { data, ids, loaded, total } = useListContext(props);
@@ -42,7 +42,8 @@ const InlineGrid: FC<
 
 InlineGrid.propTypes = {
     children: PropTypes.element,
-    filter: PropTypes.func
+    filter: PropTypes.func,
+    className: PropTypes.string
 };
 
 InlineGrid.displayName = 'InlineGrid';

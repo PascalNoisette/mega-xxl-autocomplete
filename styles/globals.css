@@ -5,58 +5,8 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
         Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-.MuiDrawer-docked {
-    display: none;
-}
-.MuiTablePagination-root {
-    display: none;
-}
-.MuiAppBar-root {
-    display: none !important;
-}
-.RaLayout-appFrame-2 {
-    margin: 0 !important;
-}
-.ControlForm .cell {
-    float: left;
-    height: 20em;
-    width: 15em;
-    padding: 1px;
-}
 
-.ControlFormInput input {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fafafa;
-    font-size: 0.9rem;
-    outline: none;
-    padding-left: 32px;
-}
-.ControlFormInput svg {
-    position: absolute;
-    padding: 0.7em 0 0 0.5em;
-}
-
-.ControlForm .suggest {
-    max-height: 15em;
-    overflow-y: scroll;
-    border: 1px solid rgb(204, 204, 204);
-    background-color: rgb(255, 255, 255);
-    padding: 0;
-    margin: 0;
-}
-.ControlForm li {
-    cursor: pointer;
-    padding: 10px;
-}
-.ControlForm li:hover {
-    background-color: rgb(238, 238, 238);
-}
-
-main > div > div.layout {
-    min-height: 80vh;
-}
-
+/* vercel icon */
 footer {
     width: 100%;
     height: 100px;
@@ -82,27 +32,45 @@ footer img {
     height: 1em;
 }
 
-.suggest-legend {
-    font-size: 80%;
-}
-.dash {
-    padding-left: 1em;
-    width: 35px;
-    display: inline-block;
-    overflow: hidden;
-}
-.toggleEdit, .ControlForm .ControlableForm input, .ControlForm .ControlableForm svg.search-icon {
+/* toggle button */
+.toggleEdit {
     display: none!important;
 }
+
 .toggleEdit.active {
     display: inline!important;
+}
+
+/* toggle search */
+.ControlForm .ControlableForm input, .ControlForm .ControlableForm svg.search-icon {
+    display: none!important;
 }
 .ControlForm.active .ControlableForm input, .ControlForm.active .ControlableForm svg.search-icon {
     display: block!important;
 }
-.globalEdit {
-    padding-left: 1em;
+
+/* toogle search cell */
+.cell{
+    display: none;
+    float: left;
+    height: 19em;
+    width: 15em;
+    padding: 1px;
 }
+
+.cell.active{
+    display: block;
+}
+.cell.ControlFormActive{
+    display: block;
+}
+
+/* hide pager at footer */
+.MuiTablePagination-root {
+    display: none;
+}
+
+/* space between floating button */
 @media screen and (max-width: 960px) {
     a.RaEditButton{
         bottom: 120px;
@@ -113,4 +81,85 @@ footer img {
     .MuiToolbar-regular, .MuiToolbar-root{
         min-height: 0!important;
     }
+}
+
+/* each top dash */
+.dash {
+    padding: 1em;
+    width: 35px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+/* Suggestion ul/li item */
+.ControlForm .suggest {
+    max-height: 15em;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    border: 1px solid rgb(204, 204, 204);
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 0;
+}
+.ControlForm .suggest li{
+    padding: 4px;
+}
+
+.ControlForm .suggest::-webkit-scrollbar {
+    display: none;
+}
+.ControlForm .suggest
+.ControlForm li {
+    cursor: pointer;
+    padding: 10px;
+}
+.ControlForm li:hover {
+    background-color: rgb(238, 238, 238);
+}
+
+/* center main input search */
+.ControlFormInput{
+    margin: auto;
+    text-align: center;
+    padding: 2em;
+}
+.ControlFormInput input {
+    border: 1px solid rgb(204, 204, 204);
+    background-color: rgb(255, 255, 255);
+    padding: 4px;
+    width: 20em;
+    height: 2em;
+    font-size: 1em;
+}
+
+/* More space for floating button */
+.floatingButton {
+    padding: 1.5em!important;
+}
+
+/* toggle loader */
+.MainLoader{
+    display: none;
+    position:absolute;
+    margin: auto;
+    width: 95%;
+    padding: 2em;
+}
+.MainLoader.active{
+    display: block;
+}
+.active .MainLoader.active {
+    display: none;
+}
+
+.RaLayout-root-1, .jss1 {
+    display: block!important;
+    min-height:auto!important;
+}
+.RaLayout-appFrame-2, .jss2{
+    margin: 0!important;
+}
+.ControlableForm{
+    min-height: 18em;
 }

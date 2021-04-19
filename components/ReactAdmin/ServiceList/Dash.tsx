@@ -3,7 +3,7 @@ import { EditButton } from 'react-admin';
 import { Service } from './Interface/Service';
 import PropTypes from 'prop-types';
 
-const Dash: FunctionComponent<{ record?: Service }> = (props) => {
+const Dash: FunctionComponent<{ record?: Service; editorMode: boolean }> = (props) => {
     const service = props.record;
     return (
         <span className="dash">
@@ -20,17 +20,19 @@ const Dash: FunctionComponent<{ record?: Service }> = (props) => {
                     alt={service.logo_alt}
                 />
             </a>
-            <EditButton
-                basePath="/api/swagger/services"
-                record={service}
-                label="Edit"
-                icon={<span />}
-                className="toggleEdit"
-            />
+            {props.editorMode && (
+                <EditButton
+                    basePath="/api/swagger/services"
+                    record={service}
+                    label="Edit"
+                    icon={<span />}
+                />
+            )}
         </span>
     );
 };
 Dash.propTypes = {
-    record: PropTypes.any
+    record: PropTypes.any,
+    editorMode: PropTypes.bool
 };
 export default Dash;

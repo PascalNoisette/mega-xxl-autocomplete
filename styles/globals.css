@@ -32,15 +32,6 @@ footer img {
     height: 1em;
 }
 
-/* toggle button */
-.toggleEdit {
-    display: none!important;
-}
-
-.toggleEdit.active {
-    display: inline!important;
-}
-
 /* toggle search */
 .ControlForm .ControlableForm input, .ControlForm .ControlableForm svg.search-icon {
     display: none!important;
@@ -61,7 +52,7 @@ footer img {
 .cell.active{
     display: block;
 }
-.cell.ControlFormActive{
+.ControlForm.active .cell{
     display: block;
 }
 

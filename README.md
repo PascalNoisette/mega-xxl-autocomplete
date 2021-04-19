@@ -1,6 +1,7 @@
 # Mega XXL autocomplete
 
-Dashboard to search accross several endpoint.
+Dashboard to search accross several endpoint. Replacement for [Heimdall](https://heimdall.site) or [Organizer](https://github.com/causefx/Organizr).
+
 
 <a href="https://github.com/PascalNoisette/mega-xxl-autocomplete/actions">
   <img src="https://github.com/PascalNoisette/mega-xxl-autocomplete/workflows/CI/badge.svg" alt="CI Status">
@@ -10,20 +11,27 @@ Dashboard to search accross several endpoint.
 ![alt text](./docs/screenshot.png)
 
 Features :
-- Autocomplete
-- Configurable endpoints
-- Support for Elasticsearch, mediawiki, opengrok and redmine endpoints
+- Dashboard of bookmarks
+- Search via autocomplete several endpoints
+- Configurable, Responsive
 - Credential storage is encrypted
+
+Any services can be bookmarked and in addition search is supported for :
+- nextcloud
+- mediawiki
+- opengrok
+- redmine
+- and any elasticsearch endpoints
 
 ## Run with docker
 
-```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:2.0```
+```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:3.0```
 
 ```docker-compose.yml 
 version: '2'
 services:
   autocomplete:
-    image: netpascal0123/mega-xxl-autocomplete:2.0
+    image: netpascal0123/mega-xxl-autocomplete:3.0
     restart: unless-stopped
     volumes:
       - ./data:/app/data/

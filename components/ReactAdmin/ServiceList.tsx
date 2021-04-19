@@ -5,10 +5,11 @@ import ControlForm from './ServiceList/ControlForm';
 import Search from './ServiceList/Search';
 import Dash from './ServiceList/Dash';
 import InlineGrid from './ServiceList/InlineGrid';
-import { FunctionComponent } from 'react';
+import { DataSearchProps } from '@appbaseio/reactivesearch/lib/components/search/DataSearch';
+import { Component, FunctionComponent } from 'react';
 
 export const ServiceList: FunctionComponent<any> = (props) => {
-    const inputsToControl: [] = [];
+    const inputsToControl: Component<DataSearchProps>[] = [];
     return (
         <List
             {...props}

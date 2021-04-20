@@ -17,10 +17,11 @@ Features :
 - Credential storage is encrypted
 
 Any services can be bookmarked and in addition search is supported for :
-- nextcloud
-- mediawiki
-- opengrok
-- redmine
+- [nextcloud](https://nextcloud.com/)
+- [mediawiki](https://www.mediawiki.org/)
+- [opengrok](https://oracle.github.io/opengrok/)
+- [redmine](https://www.redmine.org/)
+- the [firebird](https://www.firebirdsql.org/) data of [V V V](http://vvvapp.sourceforge.net/)
 - and any elasticsearch endpoints
 
 ## Run with docker

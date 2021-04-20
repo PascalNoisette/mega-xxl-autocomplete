@@ -25,8 +25,8 @@ export default class Vvv {
             const pool = Firebird.pool(10, options);
             const db = await util.promisify(pool.get.bind(pool))();
             const result = await util.promisify(db.query.bind(db))(
-                'SELECT FIRST 100 FILE_NAME, FILE_ID as ID, PATH_ID, FILE_SIZE, FILE_EXT, FILE_DATETIME FROM FILES WHERE FILE_NAME like ' +
-                    Firebird.escape('%' + keyword + '%', 13) +
+                'SELECT FIRST 100 FILE_NAME, FILE_ID as ID, PATH_ID, FILE_SIZE, FILE_EXT, FILE_DATETIME FROM FILES WHERE UPPER(FILE_NAME) like ' +
+                    Firebird.escape('%' + keyword.toUpperCase() + '%', 13) +
                     ' ORDER BY PATH_FILE_ID DESC'
             );
             db.detach();

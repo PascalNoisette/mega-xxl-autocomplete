@@ -37,7 +37,7 @@ const Search: FunctionComponent<{
                     dataField={service.dataField}
                     render={(res) => {
                         toggleVisibility(res.data.length > 0);
-                        return Suggestion(res);
+                        return Suggestion({ ...res, ...service });
                     }}
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore

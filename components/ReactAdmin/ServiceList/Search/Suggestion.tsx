@@ -1,9 +1,9 @@
 import Loader from 'react-loader-spinner';
-import Alert from '@material-ui/lab/Alert';
 import { ReactNode } from 'react';
+import Notifier from './Suggestion/Notifier';
 
 export default function Suggestion(...args: any[]): ReactNode {
-    const { loading, error, data, value, downshiftProps = {} } = args[0];
+    const { loading, error, data, value, downshiftProps = {}, app } = args[0];
     const { isOpen, getItemProps } = downshiftProps;
     if (loading) {
         return (
@@ -17,7 +17,7 @@ export default function Suggestion(...args: any[]): ReactNode {
         );
     }
     if (error) {
-        return <Alert severity="error">{error.statusText}</Alert>;
+        return <Notifier text={app + ' : ' + error.statusText} />;
     }
     return isOpen && Boolean(value.length) && data.length > 0 ? (
         <ul className="suggest">

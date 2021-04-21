@@ -72,6 +72,9 @@ footer img {
     .MuiToolbar-regular, .MuiToolbar-root{
         min-height: 0!important;
     }
+    .cell{
+        height: auto;
+    }
 }
 
 /* each top dash */
@@ -133,8 +136,10 @@ footer img {
 .MainLoader{
     position:absolute;
     margin: auto;
-    width: 95%;
+    width: 80%;
     padding: 2em;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
 }
 
 .RaLayout-root-1, .jss1 {
@@ -144,6 +149,6 @@ footer img {
 .RaLayout-appFrame-2, .jss2{
     margin: 0!important;
 }
-.ControlableForm{
-    min-height: 18em;
+.RaToolbar-mobileToolbar-32, .jss32 {
+    position: relative!important;
 }

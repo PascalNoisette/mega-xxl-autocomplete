@@ -22,6 +22,7 @@ Any services can be bookmarked and in addition search is supported for :
 - [opengrok](https://oracle.github.io/opengrok/)
 - [redmine](https://www.redmine.org/)
 - the [firebird](https://www.firebirdsql.org/) data of [V V V](http://vvvapp.sourceforge.net/)
+- any opensearch endpoints ([almost any](https://github.com/eoxc/opensearch/issues/16))
 - and any elasticsearch endpoints
 
 ## Run with docker

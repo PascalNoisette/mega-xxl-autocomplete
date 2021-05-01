@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextFunctionReturn, NextFunction } from '../middleware';
-
+/**
+ * Middleware to add ReactAdmin mandatory header
+ */
 export default function handler(
     req: NextApiRequest,
     res: NextApiResponse,

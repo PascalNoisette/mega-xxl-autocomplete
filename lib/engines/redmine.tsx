@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Engine } from '../engine';
+/**
+ * Endpoint to make a query search one a mediawiki with a nodemw bot
+ * Example of config :
+ * - endpoint http://redmine/
+ * - fieldname : title
+ * - credential : <your api token>
+ * - result to concat : 'url'
+ */
 export default class Redmine implements Engine {
     service: { url: string; credentials: string };
 

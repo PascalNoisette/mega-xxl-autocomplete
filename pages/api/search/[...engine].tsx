@@ -6,7 +6,10 @@ import basicAuth from '../../../lib/middleware/basic-auth';
 const myDB = new FileDataStore(process.cwd() + '/data');
 const Engines = {};
 const AppData = {};
-
+/**
+ * Proxy between the NextJs frontend and the remote endpoint
+ * Request is handled by one engine of the lib/engines folder
+ */
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<boolean> => {
     return await basicAuth(myDB)(req, res, async function () {
         const requestedService = req.query.engine[0];

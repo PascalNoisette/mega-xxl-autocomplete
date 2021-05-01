@@ -1,6 +1,11 @@
 import { TextInput, required, Button } from 'react-admin';
 import { FunctionComponent } from 'react';
 import { useForm } from 'react-final-form';
+/**
+ * Fieldset to input an url
+ * Extra button to run a "discover" in ajax
+ * (discover will fill other input such as logo automatically)
+ */
 export const Discover: FunctionComponent<any> = () => {
     const form = useForm();
     return (

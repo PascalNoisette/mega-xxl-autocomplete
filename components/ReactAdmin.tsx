@@ -8,7 +8,9 @@ import myDataProvider from './ReactAdmin/MyDataProvider';
 const LayoutWithoutMenu = (props) => (
     <Layout {...props} sidebar={() => <></>} appBar={() => <></>} menu={() => <></>} />
 );
-
+/**
+ * Basic react-admin layout
+ */
 const ReactAdmin = (): ReactNode => {
     return (
         <Admin dataProvider={myDataProvider} layout={LayoutWithoutMenu}>

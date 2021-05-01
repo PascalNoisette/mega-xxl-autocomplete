@@ -6,6 +6,9 @@ import {
     FormDataConsumer
 } from 'react-admin';
 import { FunctionComponent } from 'react';
+/**
+ * Fieldset to upload logo
+ */
 export const UrlAndLogo: FunctionComponent<any> = () => {
     return (
         <>

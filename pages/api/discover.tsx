@@ -5,7 +5,10 @@ import crypto from 'crypto';
 import path from 'path';
 import mkdirp from 'mkdirp';
 import nodeFetch from 'node-fetch';
-
+/**
+ * Download remote file into 'cache' directory
+ * (Usefull to request everything from the same domain afterwards)
+ */
 const downloadFile = (url): Promise<string> => {
     const hashUrl = crypto.createHash('md5').update(url).digest('hex');
     const cleanExt =
@@ -24,7 +27,9 @@ const downloadFile = (url): Promise<string> => {
         .then((res) => res.body.pipe(fs.createWriteStream(filename)))
         .then(() => hashName);
 };
-
+/**
+ * Search for title, favicon and opensearch on a given homepage
+ */
 export default async function (req: NextApiRequest, res: NextApiResponse): Promise<void> {
     const x = Xray();
     const url = JSON.parse(req.body).nice_url;

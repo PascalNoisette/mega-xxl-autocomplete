@@ -10,7 +10,9 @@ restProvider(window.location.protocol + '/api')
         filter: null
     })
     .then((names) => names.data.map((name) => engines.push({ id: name, name: name })));
-
+/**
+ * Fielset to supply endpoint url when endpoint allow search
+ */
 export const SearchField: FunctionComponent<any> = () => (
     <>
         <TextInput label="Endpoint url" source="url" />

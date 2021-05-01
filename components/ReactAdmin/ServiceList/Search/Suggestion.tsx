@@ -1,7 +1,9 @@
 import Loader from 'react-loader-spinner';
 import { ReactNode } from 'react';
 import Notifier from './Suggestion/Notifier';
-
+/**
+ * Show suggestion result in list if any
+ */
 export default function Suggestion(...args: any[]): ReactNode {
     const { loading, error, data, value, downshiftProps = {}, logo_alt } = args[0];
     const { isOpen, getItemProps } = downshiftProps;

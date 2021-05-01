@@ -9,6 +9,15 @@ if (typeof fs.existsSync == 'undefined') {
         // emulate function on web
     };
 }
+/**
+ * Endpoint to make a query search one a mediawiki with a nodemw bot
+ * Example of config :
+ * - endpoint http://wiki/
+ * - fieldname : title
+ * - credential : <generate a token for bot such as username@Bot>
+ * - url to concat https://wiki.netpascal.site/index.php?curid=
+ * - result to concat : 'pageid'
+ */
 export default class Mediawiki implements Engine {
     service: { url: string; credentials: string };
 

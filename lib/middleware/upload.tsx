@@ -14,6 +14,12 @@ const downloadFile = (file): string => {
     return file.title;
 };
 
+/**
+ * Middleware to download any POSTed File
+ *
+ * Side effect on request data :
+ * - File is transformed into corresponding filename string
+ */
 export default (
     req: NextApiRequest,
     res: NextApiResponse,

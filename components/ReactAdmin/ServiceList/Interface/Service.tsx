@@ -1,3 +1,6 @@
+/**
+ * Typedef
+ */
 export interface Service {
     nice_url: string;
     location: string;

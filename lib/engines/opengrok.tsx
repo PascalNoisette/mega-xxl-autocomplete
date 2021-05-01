@@ -1,5 +1,13 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
+/**
+ * Endpoint to make a search grok instance
+ * Example of config :
+ * - endpoint http://grok:8180/api/v1/search?field=full&defs=&refs=&path=&hist=&type=&maxresults=10&full=
+ * - fieldname : title
+ * - url to concat https://gitea/
+ * - result to concat : 'file'
+ */
 export default class Opengrok {
     service: { url: string; credentials: string };
 

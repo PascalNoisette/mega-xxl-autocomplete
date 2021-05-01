@@ -3,7 +3,9 @@ import { cloneElement, FC } from 'react';
 import { useListContext } from 'ra-core';
 import PropTypes from 'prop-types';
 import { useDatagridStyles, DatagridLoading, DatagridProps } from 'react-admin';
-
+/**
+ * Trivial inline flex list of all endpoint that allow search
+ */
 const InlineGrid: FC<
     DatagridProps & { filter?: (any) => any; className?: string }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

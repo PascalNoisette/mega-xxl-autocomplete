@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { promises as fs } from 'fs';
 
+/**
+ * Serve given file (from cache dir only)
+ */
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse

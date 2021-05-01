@@ -6,7 +6,9 @@ import { UploadOpenSearch } from './ServiceEdit/UploadOpenSearch';
 import { UrlAndLogo } from './ServiceEdit/UrlAndLogo';
 import { Discover } from './ServiceEdit/Discover';
 import { SearchField } from './ServiceEdit/SearchField';
-
+/**
+ * Show the fielsets within Tabs (Wizard like)
+ */
 export const ServiceCreate: FunctionComponent<any> = (props) => {
     const steps = [KindOfService, Discover, UrlAndLogo, SearchField, UploadOpenSearch];
     return (

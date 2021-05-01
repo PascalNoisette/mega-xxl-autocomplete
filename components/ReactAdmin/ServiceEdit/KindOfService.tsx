@@ -6,6 +6,9 @@ import { UploadOpenSearch } from './UploadOpenSearch';
 import { useForm } from 'react-final-form';
 import { Discover } from './Discover';
 import { SearchField } from './SearchField';
+/**
+ * Select if service is a bookmark or is capable of search.
+ */
 export const KindOfService: FunctionComponent<any> = ({ setValidTransition }) => {
     const form = useForm();
     return (

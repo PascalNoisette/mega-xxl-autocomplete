@@ -7,7 +7,11 @@ import { ReactNode } from 'react';
 const ReactAdmin = dynamic(() => import('../components/ReactAdmin'), {
     ssr: false
 });
-
+/**
+ * This is a single page app, served by NextJs
+ *
+ * Rely on <ReactAdmin/> to list services
+ */
 export default function Home(): ReactNode {
     return (
         <div>

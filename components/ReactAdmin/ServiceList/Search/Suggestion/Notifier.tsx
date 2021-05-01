@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { showNotification } from 'react-admin';
-
+/**
+ * Hook to show failure message
+ */
 export default connect(undefined, { showNotification })(
     (props: {
         text: string;

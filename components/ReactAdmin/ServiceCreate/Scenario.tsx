@@ -10,7 +10,9 @@ import { linkToRecord } from 'ra-core';
 import { useHistory } from 'react-router-dom';
 import { FunctionComponent, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+/**
+ * Generic Wizard Generator, equivalent of SimpleForm with tabs
+ */
 export const Scenario: FunctionComponent<any> = (props) => {
     const [openStates, setOpenStates] = useState([0]);
     const [maxStep, setMaxStep] = useState(0);

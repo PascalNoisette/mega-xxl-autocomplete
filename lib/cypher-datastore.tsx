@@ -5,7 +5,10 @@ interface ErrorFirstCallback<T> {
     (err: Error, result?: undefined | null): void;
     (err: undefined | null, result: T[]): void;
 }
-
+/**
+ * Wrapper for FileDataStore @apidevtools/swagger-express-middleware
+ * Add encryption of the field 'credentials'
+ */
 class CypherDataStore extends FileDataStore {
     password: string;
 

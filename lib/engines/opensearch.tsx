@@ -3,6 +3,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Engine } from '../engine';
 import { DOMParser } from 'xmldom';
 import fs from 'fs';
+/**
+ * Endpoint using opensearch-browser to discover and run opensearch query
+ * You should only need to upload a opensearch descriptor as configuration
+ */
 export default class Opensearch implements Engine {
     service: { url: string; credentials: string; logo_alt: string; opensearch: string };
     opensearch: any = null;

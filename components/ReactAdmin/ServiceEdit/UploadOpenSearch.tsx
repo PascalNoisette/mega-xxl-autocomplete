@@ -2,6 +2,9 @@ import { FileInput, FileField, TextInput } from 'react-admin';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { useForm, useFormState } from 'react-final-form';
 import beautify from 'xml-beautifier';
+/**
+ * Fieldset to upload xml opensearch document
+ */
 export const UploadOpenSearch: FunctionComponent<any> = () => {
     const form = useForm();
     const { values } = useFormState({ subscription: { values: true } });

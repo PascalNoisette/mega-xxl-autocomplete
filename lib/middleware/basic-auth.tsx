@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import CypherDataStore from '../cypher-datastore';
 import { NextFunction, NextFunctionReturn } from '../middleware';
-
+/**
+ * Middleware to ask for a login/password.
+ */
 export default (myDb: CypherDataStore) => (
     req: NextApiRequest,
     res: NextApiResponse,

@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Engine } from '../engine';
+/**
+ * Endpoint to make a search on a nextcloud search file provider
+ * Example of config :
+ * - endpoint https://nextcloud/
+ * - fieldname : title
+ * - credential : <generate a token for integration such as username:SECRET>
+ * - result to concat : 'resourceUrl'
+ */
 export default class Nextcloud implements Engine {
     service: { url: string; credentials: string };
 

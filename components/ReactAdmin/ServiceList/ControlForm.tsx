@@ -2,7 +2,11 @@ import { FunctionComponent, Component, ChangeEvent, useState, useEffect } from '
 import { DataSearchProps } from '@appbaseio/reactivesearch/lib/components/search/DataSearch';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
-
+/**
+ * Show a main input text field.
+ * Keep an 'ref' towards all input siblings to perform the same search
+ * accross everybody
+ */
 const ControlForm: FunctionComponent<{
     inputsToControl: Component<DataSearchProps>[];
 }> = (props) => {

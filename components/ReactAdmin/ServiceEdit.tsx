@@ -26,7 +26,9 @@ const EditToolbar = (toolbarProps) => (
         <DeleteButton />
     </Toolbar>
 );
-
+/**
+ * Show all the fielsets in the same edit page in a very SimpleForm
+ */
 export const ServiceEdit: FunctionComponent<any> = (props) => {
     const steps = [KindOfService, Discover, UrlAndLogo, SearchField, UploadOpenSearch];
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

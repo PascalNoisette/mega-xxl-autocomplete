@@ -4,7 +4,11 @@ import Suggestion from './Search/Suggestion';
 import { Service } from './Interface/Service';
 import { DataSearchProps } from '@appbaseio/reactivesearch/lib/components/search/DataSearch';
 import PropTypes from 'prop-types';
-
+/**
+ * Wrapper of Reactivesearch
+ *
+ * One DataSearch is display per service endpoint
+ */
 const Search: FunctionComponent<{
     record?: Service;
     inputsToControl: Component<DataSearchProps>[];

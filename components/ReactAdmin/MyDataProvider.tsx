@@ -2,6 +2,10 @@ import restProvider from 'ra-data-simple-rest';
 import { DataProvider, CreateParams, UpdateParams } from 'ra-core';
 const dataProvider = restProvider(window.location.protocol);
 
+/**
+ * Custom dataprovider to handle upload properly
+ * All blob are transformed into File ready to be POSTed
+ */
 const myDataProvider: DataProvider = {
     ...dataProvider,
     update: (resource, params) => {

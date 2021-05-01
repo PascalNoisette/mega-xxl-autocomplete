@@ -2,7 +2,15 @@ import axios from 'axios';
 import https from 'https';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Engine } from '../engine';
-
+/**
+ * Endpoint to pipe request to a elasticsearch engine
+ * Example of config :
+ * - endpoint https://elasticsearch:9200/notes/
+ * - fieldname : Title
+ * - credential : <login:basicPassword>
+ * - url to concat https://leanote.netpascal.site/note/
+ * - result to concat : '_id'
+ */
 export default class Es implements Engine {
     service: { url: string; credentials: string };
 

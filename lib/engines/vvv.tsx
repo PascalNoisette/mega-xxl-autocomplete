@@ -1,7 +1,12 @@
 import Firebird, { Options } from 'node-firebird';
 import { NextApiRequest, NextApiResponse } from 'next';
 import util from 'util';
-
+/**
+ * Endpoint to make a query search one a mediawiki with a nodemw bot
+ * Example of config :
+ * - endpoint must be the following <firebirdserver>:<port number>:<database file path>
+ * - fieldname : title
+ */
 export default class Vvv {
     service: { url: string; credentials: string };
 

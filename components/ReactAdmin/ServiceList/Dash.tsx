@@ -2,7 +2,9 @@ import { FunctionComponent } from 'react';
 import { EditButton } from 'react-admin';
 import { Service } from './Interface/Service';
 import PropTypes from 'prop-types';
-
+/**
+ * Trivial inline list of all bookmarks
+ */
 const Dash: FunctionComponent<{ record?: Service; editorMode: boolean }> = (props) => {
     const service = props.record;
     return (

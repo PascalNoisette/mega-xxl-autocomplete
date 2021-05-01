@@ -9,6 +9,10 @@ import filterMock from '../../../lib/middleware/filter-mock';
 import upload from '../../../lib/middleware/upload';
 const myDB = new FileDataStore(process.cwd() + '/data');
 
+/**
+ * Swagger 2.0 generic middlware for NextJs
+ * Inspired from @apidevtools/swagger-express-middleware
+ */
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse

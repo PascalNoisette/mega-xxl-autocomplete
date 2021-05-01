@@ -32,9 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<boolea
                                     x.data.engine +
                                     '.tsx').default;
                             }
-                            AppData[user][x.data.app] = new Engines[x.data.engine](
-                                x.data
-                            );
+                            AppData[user][x.data.id] = new Engines[x.data.engine](x.data);
                         });
                         resolve(true);
                     }

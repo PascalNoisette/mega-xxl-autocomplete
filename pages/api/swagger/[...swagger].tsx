@@ -6,6 +6,7 @@ import basicAuth from '../../../lib/middleware/basic-auth';
 import contentRange from '../../../lib/middleware/content-range';
 import expressMock, { useMiddleware } from '../../../lib/middleware/express-mock';
 import filterMock from '../../../lib/middleware/filter-mock';
+import upload from '../../../lib/middleware/upload';
 const myDB = new FileDataStore(process.cwd() + '/data');
 
 export default async function handler(
@@ -18,7 +19,7 @@ export default async function handler(
             try {
                 await useMiddleware(
                     [].concat(
-                        [expressMock, basicAuth(myDB), contentRange, filterMock],
+                        [expressMock, basicAuth(myDB), contentRange, filterMock, upload],
                         swaggerMiddleware.metadata(),
                         swaggerMiddleware.parseRequest(),
                         swaggerMiddleware.validateRequest(),

@@ -19,9 +19,7 @@ definitions:
         type: "string"
       url:
         type: "string"
-      has_search:
-        type: "boolean"
-      app:
+      KindOfService:
         type: "string"
       dataField:
         type: "string"
@@ -35,11 +33,11 @@ definitions:
         type: "string"
         required: true
   service-filters:
-    - name: has_search
+    - name: KindOfService
       in: query
-      description: Filters service than profide a search engine
+      description: Filters service than provide a search engine
       required: false
-      type: boolean
+      type: string
 
 parameters:
   serviceId:

@@ -1,0 +1,52 @@
+[
+  {
+    "collection": "/api/swagger/services",
+    "name": "/5506406326632834",
+    "modifiedOn": "2021-05-01T10:28:08.369Z",
+    "data": {
+      "engine": "opensearch",
+      "dataField": "completion",
+      "source": "url",
+      "location": "",
+      "kindOfService": "opensearch",
+      "nice_url": "https://fr.wikipedia.org/",
+      "logo_alt": "Wikipédia, l'encyclopédie libre",
+      "logo": "8ea489209e9b914c678fa4c78fa30e83.ico",
+      "opensearch": "f1bc7c3985522baf06cedb6c47ed4446.php",
+      "opensearch_upload": "",
+      "id": 5506406326632834
+    },
+    "createdOn": "2021-05-01T10:28:08.369Z"
+  },
+  {
+    "collection": "/api/swagger/services",
+    "name": "/65014134625280",
+    "modifiedOn": "2021-05-01T10:42:55.380Z",
+    "data": {
+      "engine": "opensearch",
+      "dataField": "completion",
+      "source": "completion",
+      "location": "https://www.google.com/search?q=",
+      "kindOfService": "opensearch",
+      "nice_url": "https://www.google.fr",
+      "logo_alt": "Google",
+      "logo": "1c53c2d17be70d91ada6625128bbc4f7.ico",
+      "opensearch": "google-search.xml",
+      "id": 65014134625280
+    },
+    "createdOn": "2021-05-01T10:42:55.380Z"
+  },
+  {
+    "collection": "/api/swagger/services",
+    "name": "/8167552028767242",
+    "modifiedOn": "2021-05-01T06:54:12.744Z",
+    "data": {
+      "kindOfService": "bookmark",
+      "nice_url": "https://hub.docker.com/",
+      "logo_alt": "Docker Hub",
+      "logo": "b43a42bcde12af68119b1c3a2200a209.ico",
+      "id": 8167552028767242
+    },
+    "createdOn": "2021-05-01T06:54:12.744Z"
+  }
+]

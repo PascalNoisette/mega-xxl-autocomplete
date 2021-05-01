@@ -15,7 +15,7 @@ const Search: FunctionComponent<{
     return (
         <div className={visible ? 'cell active' : 'cell'} id={'cell-' + index}>
             <a
-                href={service.location || service.url}
+                href={service.location || service.nice_url}
                 target="_blank"
                 rel="noreferrer"
                 title={service.logo_alt}
@@ -23,11 +23,11 @@ const Search: FunctionComponent<{
                 <img
                     style={{ margin: '5px' }}
                     height="30px"
-                    src={service.logo}
+                    src={'api/static/' + service.logo}
                     alt={service.logo_alt}
                 />
             </a>
-            <ReactiveBase url={window.location + ''} app={'api/search/' + service.app}>
+            <ReactiveBase url={window.location + ''} app={'api/search/' + service.id}>
                 <DataSearch
                     componentId={'searchbox' + index}
                     debounce={500}

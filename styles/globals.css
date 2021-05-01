@@ -152,3 +152,15 @@ footer img {
 .RaToolbar-mobileToolbar-32, .jss32 {
     position: relative!important;
 }
+
+.hidden-tab {
+    display: none!important;
+}
+.simple-form h2{
+    border-bottom: 1px solid black;
+}
+
+.simple-form pre{
+    overflow-x: scroll;
+    max-width: 100vh;
+}

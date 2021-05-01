@@ -65,7 +65,7 @@ export const ServiceList: FunctionComponent<any> = (props) => {
                     <ControlForm inputsToControl={inputsToControl} />
                     <InlineGrid
                         className="ControlableForm"
-                        filter={(record) => record['has_search']}
+                        filter={(record) => record['kindOfService'] != 'bookmark'}
                     >
                         <Search inputsToControl={inputsToControl} />
                     </InlineGrid>

@@ -1,18 +1,17 @@
 import { Admin, Resource, Layout } from 'react-admin';
-import restProvider from 'ra-data-simple-rest';
 import { ServiceCreate } from './ReactAdmin/ServiceCreate';
 import { ServiceEdit } from './ReactAdmin/ServiceEdit';
 import { ServiceList } from './ReactAdmin/ServiceList';
 import { ReactNode } from 'react';
+import myDataProvider from './ReactAdmin/MyDataProvider';
 
-const dataProvider = restProvider(window.location.protocol);
 const LayoutWithoutMenu = (props) => (
     <Layout {...props} sidebar={() => <></>} appBar={() => <></>} menu={() => <></>} />
 );
 
 const ReactAdmin = (): ReactNode => {
     return (
-        <Admin dataProvider={dataProvider} layout={LayoutWithoutMenu}>
+        <Admin dataProvider={myDataProvider} layout={LayoutWithoutMenu}>
             <Resource
                 name="api/swagger/services"
                 list={ServiceList}

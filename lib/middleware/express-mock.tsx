@@ -67,7 +67,11 @@ export const useMiddleware = (
                 };
             }
             middleware(req, res, function next() {
-                resolve();
+                try {
+                    resolve();
+                } catch (e) {
+                    console.log(e);
+                }
             });
         })
     );

@@ -13,6 +13,7 @@ export default class Es implements Engine {
     request(clitentReq: NextApiRequest, clientRes: NextApiResponse): Promise<any> {
         const service = this.service;
         delete clitentReq.headers.authorization;
+        delete clitentReq.headers.cookie;
         return axios({
             auth: {
                 username: service.credentials.split(':')[0],
@@ -20,7 +21,7 @@ export default class Es implements Engine {
             },
             headers: clitentReq.headers,
             method: 'POST',
-            url: service.url + clitentReq.url.replace('/api/search/', '/'),
+            url: service.url + clitentReq.url.replace(/\/api\/search\/\d+\//, ''),
             responseType: 'stream',
             data: clitentReq.body,
             httpsAgent: new https.Agent({
@@ -28,9 +29,11 @@ export default class Es implements Engine {
             })
         })
             .then((backendRes) => {
+                console.log(backendRes);
                 backendRes.data.pipe(clientRes);
             })
             .catch((err) => {
+                console.log(err);
                 let code = 500;
                 let message = err.errno;
                 if (typeof err.response != 'undefined') {

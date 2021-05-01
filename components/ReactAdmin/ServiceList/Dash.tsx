@@ -8,7 +8,7 @@ const Dash: FunctionComponent<{ record?: Service; editorMode: boolean }> = (prop
     return (
         <span className="dash">
             <a
-                href={service.url}
+                href={service.nice_url}
                 target="_blank"
                 rel="noreferrer"
                 title={service.logo_alt}
@@ -16,7 +16,7 @@ const Dash: FunctionComponent<{ record?: Service; editorMode: boolean }> = (prop
                 <img
                     style={{ margin: '5px' }}
                     height="30px"
-                    src={service.logo}
+                    src={'api/static/' + service.logo}
                     alt={service.logo_alt}
                 />
             </a>

@@ -1,14 +1,17 @@
-import { Create, SimpleForm, TextInput } from 'react-admin';
-import { SearchFields } from './ServiceEdit/SearchField';
+import { Create } from 'react-admin';
 import { FunctionComponent } from 'react';
+import { Scenario } from './ServiceCreate/Scenario';
+import { KindOfService } from './ServiceEdit/KindOfService';
+import { UploadOpenSearch } from './ServiceEdit/UploadOpenSearch';
+import { UrlAndLogo } from './ServiceEdit/UrlAndLogo';
+import { Discover } from './ServiceEdit/Discover';
+import { SearchField } from './ServiceEdit/SearchField';
 
-export const ServiceCreate: FunctionComponent<any> = (props) => (
-    <Create title="Create a Service" {...props}>
-        <SimpleForm>
-            <TextInput source="logo" />
-            <TextInput source="logo_alt" />
-            <TextInput source="url" />
-            <SearchFields />
-        </SimpleForm>
-    </Create>
-);
+export const ServiceCreate: FunctionComponent<any> = (props) => {
+    const steps = [KindOfService, Discover, UrlAndLogo, SearchField, UploadOpenSearch];
+    return (
+        <Create title="Create a Service" {...props}>
+            <Scenario steps={steps} {...props} />
+        </Create>
+    );
+};

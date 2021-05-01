@@ -1,12 +1,18 @@
-import { discover } from 'opensearch-browser';
+import { fromXml } from 'opensearch-browser';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Engine } from '../engine';
 import { DOMParser } from 'xmldom';
+import fs from 'fs';
 export default class Opensearch implements Engine {
-    service: { url: string; credentials: string; app: string };
+    service: { url: string; credentials: string; logo_alt: string; opensearch: string };
     opensearch: any = null;
 
-    constructor(service: { url: string; credentials: string; app: string }) {
+    constructor(service: {
+        url: string;
+        credentials: string;
+        logo_alt: string;
+        opensearch: string;
+    }) {
         this.service = service;
     }
 
@@ -17,7 +23,10 @@ export default class Opensearch implements Engine {
 
         if (!this.opensearch) {
             global.DOMParser = DOMParser;
-            this.opensearch = await discover(service.url);
+            const cacheDir = '/data/cache/';
+            const filename = process.cwd() + cacheDir + service.opensearch;
+            const xml = fs.readFileSync(filename, 'utf8');
+            this.opensearch = fromXml(xml);
         }
         const results = await this.opensearch
             .getSuggestions({ searchTerms: keyword })
@@ -31,7 +40,7 @@ export default class Opensearch implements Engine {
 
         try {
             results.unshift({
-                completion: '¤ Search on ' + this.service.app,
+                completion: '¤ Search on ' + this.service.logo_alt,
                 ...this.opensearch.createSearchRequest(
                     {
                         searchTerms: keyword

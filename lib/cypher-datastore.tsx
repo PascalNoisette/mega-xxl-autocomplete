@@ -47,7 +47,7 @@ class CypherDataStore extends FileDataStore {
                         delete element.data.encrypted;
                         Object.assign(element.data, JSON.parse(dec));
                     } catch (e) {
-                        console.log('Cannot decrypt ' + element.data.app);
+                        console.log('Cannot decrypt ' + element.data.id);
                     }
                 }
             });

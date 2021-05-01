@@ -1,11 +1,4 @@
-import {
-    TextInput,
-    SelectInput,
-    PasswordInput,
-    BooleanInput,
-    FormDataConsumer,
-    required
-} from 'react-admin';
+import { TextInput, SelectInput, PasswordInput } from 'react-admin';
 import restProvider from 'ra-data-simple-rest';
 import { FunctionComponent } from 'react';
 
@@ -18,26 +11,15 @@ restProvider(window.location.protocol + '/api')
     })
     .then((names) => names.data.map((name) => engines.push({ id: name, name: name })));
 
-export const SearchFields: FunctionComponent<any> = () => (
+export const SearchField: FunctionComponent<any> = () => (
     <>
-        <BooleanInput source="has_search" defaultValue={false} />
-        <FormDataConsumer>
-            {({ formData }) =>
-                formData.has_search && (
-                    <span>
-                        <TextInput source="app" />
-                        <TextInput source="dataField" />
-                        <PasswordInput source="credentials" />
-                        <TextInput source="location" />
-                        <TextInput source="source" />
-                        <SelectInput
-                            validate={required()}
-                            source="engine"
-                            choices={engines}
-                        />
-                    </span>
-                )
-            }
-        </FormDataConsumer>
+        <TextInput label="Endpoint url" source="url" />
+        <TextInput source="dataField" label="Field name to use as title" />
+        <PasswordInput source="credentials" />
+        <TextInput label="Url to concat with results" source="location" />
+        <TextInput label="Result to concat with url" source="source" />
+        <SelectInput source="engine" choices={engines} />
     </>
 );
+
+SearchField.displayName = 'Search Fields';

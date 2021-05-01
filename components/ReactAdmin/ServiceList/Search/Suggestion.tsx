@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import Notifier from './Suggestion/Notifier';
 
 export default function Suggestion(...args: any[]): ReactNode {
-    const { loading, error, data, value, downshiftProps = {}, app } = args[0];
+    const { loading, error, data, value, downshiftProps = {}, logo_alt } = args[0];
     const { isOpen, getItemProps } = downshiftProps;
     if (loading) {
         return (
@@ -17,7 +17,8 @@ export default function Suggestion(...args: any[]): ReactNode {
         );
     }
     if (error) {
-        return <Notifier text={app + ' : ' + error.statusText} />;
+        //to do const notify = useNotify(); notify(error.message, 'error');
+        return <Notifier text={logo_alt + ' : ' + error.statusText} />;
     }
     return isOpen && Boolean(value.length) && data.length > 0 ? (
         <ul className="suggest">

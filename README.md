@@ -33,7 +33,7 @@ Any services can be bookmarked and in addition search is supported for :
 version: '2'
 services:
   autocomplete:
-    image: netpascal0123/mega-xxl-autocomplete:3.1
+    image: netpascal0123/mega-xxl-autocomplete:4.0
     restart: unless-stopped
     volumes:
       - ./data:/app/data/

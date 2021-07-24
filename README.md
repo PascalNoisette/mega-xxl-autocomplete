@@ -27,7 +27,7 @@ Any services can be bookmarked and in addition search is supported for :
 
 ## Run with docker
 
-```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:4.0```
+```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:4.1```
 
 ```docker-compose.yml 
 version: '2'

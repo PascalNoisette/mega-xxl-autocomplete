@@ -3,6 +3,7 @@ import CreateButtonIcon from '@material-ui/icons/Create';
 import SearchIcon from '@material-ui/icons/Search';
 import ControlForm from './ServiceList/ControlForm';
 import Search from './ServiceList/Search';
+import Widget from './ServiceList/Widget';
 import Dash from './ServiceList/Dash';
 import InlineGrid from './ServiceList/InlineGrid';
 import { DataSearchProps } from '@appbaseio/reactivesearch/lib/components/search/DataSearch';
@@ -63,20 +64,34 @@ export const ServiceList: FunctionComponent<any> = (props) => {
                         }}
                     />
                     {/* First List : show all bookmarks */}
-                    <InlineGrid>
+                    <InlineGrid
+                        filter={(record) => !['widget'].includes(record['kindOfService'])}
+                    >
                         <Dash editorMode={editorMode} record={null} />
                     </InlineGrid>
                 </Toolbar>
 
                 <div className={searchMode ? 'active ControlForm' : 'ControlForm'}>
                     {/* Element to control all the other search form siblings */}
-                    <ControlForm inputsToControl={inputsToControl} />
+                    <ControlForm
+                        searchMode={searchMode}
+                        inputsToControl={inputsToControl}
+                    />
                     {/* Second List : show only the service that have a search form */}
                     <InlineGrid
                         className="ControlableForm"
-                        filter={(record) => record['kindOfService'] != 'bookmark'}
+                        filter={(record) =>
+                            !['bookmark', 'widget'].includes(record['kindOfService'])
+                        }
                     >
                         <Search inputsToControl={inputsToControl} />
+                    </InlineGrid>
+                </div>
+                <div>
+                    <InlineGrid
+                        filter={(record) => ['widget'].includes(record['kindOfService'])}
+                    >
+                        <Widget editorMode={editorMode} />
                     </InlineGrid>
                 </div>
             </>

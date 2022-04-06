@@ -11,7 +11,7 @@ Dashboard to search accross several endpoint. Replacement for [Heimdall](https:/
 ![alt text](./docs/screenshot.png)
 
 Features :
-- Dashboard of bookmarks
+- Dashboard of bookmarks and widget
 - Search via autocomplete several endpoints
 - Configurable, Responsive
 - Credential storage is encrypted
@@ -27,13 +27,13 @@ Any services can be bookmarked and in addition search is supported for :
 
 ## Run with docker
 
-```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:4.1```
+```docker run --rm -p3000:3000 -v `pwd`/data/:/app/data netpascal0123/mega-xxl-autocomplete:4.2```
 
 ```docker-compose.yml 
 version: '2'
 services:
   autocomplete:
-    image: netpascal0123/mega-xxl-autocomplete:4.0
+    image: netpascal0123/mega-xxl-autocomplete:4.2
     restart: unless-stopped
     volumes:
       - ./data:/app/data/

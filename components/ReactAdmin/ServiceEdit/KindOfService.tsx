@@ -2,6 +2,7 @@ import { RadioButtonGroupInput } from 'react-admin';
 import { FunctionComponent } from 'react';
 import PropTypes from 'prop-types';
 import { UrlAndLogo } from './UrlAndLogo';
+import { Widget } from './Widget';
 import { UploadOpenSearch } from './UploadOpenSearch';
 import { useForm } from 'react-final-form';
 import { Discover } from './Discover';
@@ -43,6 +44,9 @@ export const KindOfService: FunctionComponent<any> = ({ setValidTransition }) =>
                             UrlAndLogo,
                             SearchField
                         ]);
+                    } else if (value == 'widget') {
+                        form.change('engine', '');
+                        setValidTransition([KindOfService, Discover, UrlAndLogo, Widget]);
                     }
                 }}
                 choices={[
@@ -57,6 +61,10 @@ export const KindOfService: FunctionComponent<any> = ({ setValidTransition }) =>
                     {
                         id: 'search',
                         name: 'Supply url of a search engine'
+                    },
+                    {
+                        id: 'widget',
+                        name: 'Add a widget from webpage.'
                     }
                 ]}
             />

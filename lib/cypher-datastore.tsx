@@ -22,6 +22,10 @@ class CypherDataStore extends FileDataStore {
         return super.getCollection(collection, callback);
     }
 
+    get(collection: string, callback: ErrorFirstCallback<Resource>): void {
+        return super.get(collection, callback);
+    }
+
     setPassword(customerDefined: string): CypherDataStore {
         this.password = customerDefined;
         return this;

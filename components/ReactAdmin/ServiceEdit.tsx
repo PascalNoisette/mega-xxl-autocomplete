@@ -13,6 +13,7 @@ import { UploadOpenSearch } from './ServiceEdit/UploadOpenSearch';
 import { UrlAndLogo } from './ServiceEdit/UrlAndLogo';
 import { Discover } from './ServiceEdit/Discover';
 import { SearchField } from './ServiceEdit/SearchField';
+import { Widget } from './ServiceEdit/Widget';
 import PropTypes from 'prop-types';
 
 const ServiceTitle = (record) => {
@@ -30,7 +31,14 @@ const EditToolbar = (toolbarProps) => (
  * Show all the fielsets in the same edit page in a very SimpleForm
  */
 export const ServiceEdit: FunctionComponent<any> = (props) => {
-    const steps = [KindOfService, Discover, UrlAndLogo, SearchField, UploadOpenSearch];
+    const steps = [
+        KindOfService,
+        Discover,
+        UrlAndLogo,
+        SearchField,
+        UploadOpenSearch,
+        Widget
+    ];
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { hasList, hasEdit, hasShow, hasCreate, ...formViewProps } = props;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

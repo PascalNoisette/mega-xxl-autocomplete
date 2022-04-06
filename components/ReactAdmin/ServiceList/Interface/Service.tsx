@@ -10,4 +10,6 @@ export interface Service {
     dataField: string;
     service: string;
     source: string;
+    refresh: string;
+    content: string;
 }

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
  */
 const ControlForm: FunctionComponent<{
     inputsToControl: Component<DataSearchProps>[];
+    searchMode: boolean;
 }> = (props) => {
     const [loading, isLoading] = useState(null);
     const [value, setValue] = useState('');
@@ -41,30 +42,33 @@ const ControlForm: FunctionComponent<{
     };
 
     return (
-        <form className="ControlFormInput">
-            <input
-                placeholder="Search..."
-                type="text"
-                value={value}
-                onChange={(event: ChangeEvent<{ value: string }>) => {
-                    setValue(event.target.value);
-                    showLoader();
-                }}
-                onFocus={() => {
-                    setTimeout(updateChildren, 100);
-                }}
-            />
-            {loading && (
-                <div className="MainLoader">
-                    <Loader type="Puff" color="#00BFFF" height={100} width={100} />
-                </div>
-            )}
-        </form>
+        !props.searchMode && (
+            <form className="ControlFormInput">
+                <input
+                    placeholder="Search..."
+                    type="text"
+                    value={value}
+                    onChange={(event: ChangeEvent<{ value: string }>) => {
+                        setValue(event.target.value);
+                        showLoader();
+                    }}
+                    onFocus={() => {
+                        setTimeout(updateChildren, 100);
+                    }}
+                />
+                {loading && (
+                    <div className="MainLoader">
+                        <Loader type="Puff" color="#00BFFF" height={100} width={100} />
+                    </div>
+                )}
+            </form>
+        )
     );
 };
 
 ControlForm.propTypes = {
-    inputsToControl: PropTypes.any
+    inputsToControl: PropTypes.any,
+    searchMode: PropTypes.any
 };
 
 export default ControlForm;

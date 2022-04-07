@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import FileDataStore from '../../../lib/cypher-datastore';
 import basicAuth from '../../../lib/middleware/basic-auth';
 import axios from 'axios';
-import { Service } from '../../../components/ReactAdmin/ServiceList/Interface/Service'
+import { Service } from '../../../components/ReactAdmin/ServiceList/Interface/Service';
 
 const myDB = new FileDataStore(process.cwd() + '/data');
 /**
@@ -12,7 +12,10 @@ const myDB = new FileDataStore(process.cwd() + '/data');
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<boolean> => {
     return await basicAuth(myDB)(req, res, async function () {
         const requestedServiceId = req.query.engine[0];
-        const requestedService : {data:Service} = await new Promise(function (resolve, reject) {
+        const requestedService: { data: Service } = await new Promise(function (
+            resolve,
+            reject
+        ) {
             myDB.get(
                 '/api/swagger/services/' + requestedServiceId,
                 function callback(err, service) {

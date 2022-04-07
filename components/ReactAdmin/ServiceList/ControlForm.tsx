@@ -43,7 +43,8 @@ const ControlForm: FunctionComponent<{
     };
 
     return (
-        !props.searchMode && props.hasChildren && (
+        !props.searchMode &&
+        props.hasChildren && (
             <form className="ControlFormInput">
                 <input
                     placeholder="Search..."
@@ -69,7 +70,8 @@ const ControlForm: FunctionComponent<{
 
 ControlForm.propTypes = {
     inputsToControl: PropTypes.any,
-    searchMode: PropTypes.any
+    searchMode: PropTypes.any,
+    hasChildren: PropTypes.any
 };
 
 export default ControlForm;

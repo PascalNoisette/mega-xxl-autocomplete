@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 const Search: FunctionComponent<{
     record?: Service;
     inputsToControl: Component<DataSearchProps>[];
-    setHasChildren: (Boolean)=>void;
+    setHasChildren: (Boolean) => void;
 }> = (props) => {
     const service = props.record;
     const index = service.id;

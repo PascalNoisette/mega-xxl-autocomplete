@@ -1,4 +1,4 @@
-import { CreateButton, Toolbar, List, TextInput } from 'react-admin';
+import { CreateButton, Toolbar, List } from 'react-admin';
 import CreateButtonIcon from '@material-ui/icons/Create';
 import SearchIcon from '@material-ui/icons/Search';
 import ControlForm from './ServiceList/ControlForm';
@@ -85,7 +85,10 @@ export const ServiceList: FunctionComponent<any> = (props) => {
                             !['bookmark', 'widget'].includes(record['kindOfService'])
                         }
                     >
-                        <Search inputsToControl={inputsToControl} setHasChildren={setHasChildren} />
+                        <Search
+                            inputsToControl={inputsToControl}
+                            setHasChildren={setHasChildren}
+                        />
                     </InlineGrid>
                 </div>
                 <div>

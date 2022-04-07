@@ -1,4 +1,4 @@
-import { TextInput, SelectInput } from 'react-admin';
+import { TextInput } from 'react-admin';
 import { FunctionComponent } from 'react';
 /**
  * Fieldset to upload logo

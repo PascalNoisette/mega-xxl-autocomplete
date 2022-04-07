@@ -7,8 +7,9 @@ const dataProvider = restProvider(window.location.protocol);
  */
 const myDataProvider: DataProvider = {
     ...dataProvider,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    getList: (resource: string, params: GetListParams) => { 
+    getList: (resource: string, params: GetListParams) => {
         return dataProvider
             .getList(resource, params)
             .then((result) => {

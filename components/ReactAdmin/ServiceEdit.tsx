@@ -14,6 +14,7 @@ import { UrlAndLogo } from './ServiceEdit/UrlAndLogo';
 import { Discover } from './ServiceEdit/Discover';
 import { SearchField } from './ServiceEdit/SearchField';
 import { Widget } from './ServiceEdit/Widget';
+import { Meta } from './ServiceEdit/Meta';
 import PropTypes from 'prop-types';
 
 const ServiceTitle = (record) => {
@@ -37,7 +38,8 @@ export const ServiceEdit: FunctionComponent<any> = (props) => {
         UrlAndLogo,
         SearchField,
         UploadOpenSearch,
-        Widget
+        Widget,
+        Meta
     ];
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { hasList, hasEdit, hasShow, hasCreate, ...formViewProps } = props;

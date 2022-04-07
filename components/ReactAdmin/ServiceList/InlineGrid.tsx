@@ -11,7 +11,22 @@ const InlineGrid: FC<
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
 > = React.forwardRef((props, _ref) => {
     const classes = useDatagridStyles(props);
-    const { children, filter, className } = props;
+    const { children, className } = props;
+    const filter = (item) => {
+        try {
+            const filter = JSON.parse('' + (new URLSearchParams(window.location.hash)).get('#/api/swagger/services?filter'));
+            if (typeof(filter) != "undefined" && filter) {
+                for (const [key, value] of Object.entries<string>(filter)) {
+                    if (value.startsWith('!') && (!item[key] || item[key].split(',').indexOf(value.substr(1)) != -1) || !value.startsWith('!') && (typeof(item[key]) != 'string' || item[key].split(',').indexOf(value) == -1)) {
+                        return false;
+                    }
+                }
+            }
+        } catch (e) {
+            console.error(e);
+        }
+        return (!props.filter || props.filter(item));
+    }
 
     const { data, ids, loaded, total } = useListContext(props);
 

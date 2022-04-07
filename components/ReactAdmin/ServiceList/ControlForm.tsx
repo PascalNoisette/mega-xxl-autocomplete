@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 const ControlForm: FunctionComponent<{
     inputsToControl: Component<DataSearchProps>[];
     searchMode: boolean;
+    hasChildren: boolean;
 }> = (props) => {
     const [loading, isLoading] = useState(null);
     const [value, setValue] = useState('');
@@ -42,7 +43,7 @@ const ControlForm: FunctionComponent<{
     };
 
     return (
-        !props.searchMode && (
+        !props.searchMode && props.hasChildren && (
             <form className="ControlFormInput">
                 <input
                     placeholder="Search..."

@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 const Search: FunctionComponent<{
     record?: Service;
     inputsToControl: Component<DataSearchProps>[];
+    setHasChildren: (Boolean)=>void;
 }> = (props) => {
     const service = props.record;
     const index = service.id;
@@ -37,6 +38,7 @@ const Search: FunctionComponent<{
                     debounce={500}
                     ref={(input) => {
                         props.inputsToControl.push(input);
+                        props.setHasChildren(true);
                     }}
                     dataField={service.dataField}
                     render={(res) => {
@@ -64,6 +66,7 @@ const Search: FunctionComponent<{
 };
 Search.propTypes = {
     inputsToControl: PropTypes.any,
-    record: PropTypes.any
+    record: PropTypes.any,
+    setHasChildren: PropTypes.any
 };
 export default Search;

@@ -1,4 +1,4 @@
-import { CreateButton, Toolbar, List } from 'react-admin';
+import { CreateButton, Toolbar, List, TextInput } from 'react-admin';
 import CreateButtonIcon from '@material-ui/icons/Create';
 import SearchIcon from '@material-ui/icons/Search';
 import ControlForm from './ServiceList/ControlForm';
@@ -15,6 +15,7 @@ import { Component, FunctionComponent, useState, useCallback } from 'react';
 export const ServiceList: FunctionComponent<any> = (props) => {
     const inputsToControl: Component<DataSearchProps>[] = [];
     const [editorMode, setEditorMode] = useState(false);
+    const [hasChildren, setHasChildren] = useState(false);
     const toggleEdit = useCallback(() => {
         setEditorMode((v) => !v);
     }, []);
@@ -30,7 +31,6 @@ export const ServiceList: FunctionComponent<any> = (props) => {
             sort={{ field: 'published_at', order: 'asc' }}
             hasCreate={false}
             exporter={false}
-            filter={null}
             actions={false}
         >
             <>
@@ -76,6 +76,7 @@ export const ServiceList: FunctionComponent<any> = (props) => {
                     <ControlForm
                         searchMode={searchMode}
                         inputsToControl={inputsToControl}
+                        hasChildren={hasChildren}
                     />
                     {/* Second List : show only the service that have a search form */}
                     <InlineGrid
@@ -84,7 +85,7 @@ export const ServiceList: FunctionComponent<any> = (props) => {
                             !['bookmark', 'widget'].includes(record['kindOfService'])
                         }
                     >
-                        <Search inputsToControl={inputsToControl} />
+                        <Search inputsToControl={inputsToControl} setHasChildren={setHasChildren} />
                     </InlineGrid>
                 </div>
                 <div>

@@ -14,8 +14,8 @@ export default (myDb: CypherDataStore) => (
     const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':');
 
     // Server must be requested with basic auth
-    if (login && password) {
-        myDb.setPassword(password);
+    if (req.headers['user-agent'].match(/CrKey/) || (login && password)) {
+        myDb.setPassword(password || '');
         return next(req, res);
     }
     res.setHeader('WWW-Authenticate', 'Basic realm="401"');

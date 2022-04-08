@@ -34,63 +34,69 @@ export const ServiceList: FunctionComponent<any> = (props) => {
             actions={false}
         >
             <>
-                <Toolbar>
-                    {/* Create new service */}
-                    <CreateButton className="floatingButton" basePath="services" />
-                    {/* Toggle the hidden edit button(s) */}
-                    <CreateButton
-                        className="RaEditButton floatingButton"
-                        label="edit"
-                        icon={<CreateButtonIcon />}
-                        color="secondary"
-                        aria-label="list"
-                        onClick={(e) => {
-                            toggleEdit();
-                            e.preventDefault();
-                            return false;
-                        }}
-                    />
-                    {/* Toggle the hidden search form(s) */}
-                    <CreateButton
-                        className="RaSearchButton floatingButton"
-                        label="Advanced"
-                        icon={<SearchIcon />}
-                        color="default"
-                        aria-label="list"
-                        onClick={(e) => {
-                            toggleSearchMode();
-                            e.preventDefault();
-                            return false;
-                        }}
-                    />
-                    {/* First List : show all bookmarks */}
-                    <InlineGrid
-                        filter={(record) => !['widget'].includes(record['kindOfService'])}
-                    >
-                        <Dash editorMode={editorMode} record={null} />
-                    </InlineGrid>
-                </Toolbar>
-
-                <div className={searchMode ? 'active ControlForm' : 'ControlForm'}>
-                    {/* Element to control all the other search form siblings */}
-                    <ControlForm
-                        searchMode={searchMode}
-                        inputsToControl={inputsToControl}
-                        hasChildren={hasChildren}
-                    />
-                    {/* Second List : show only the service that have a search form */}
-                    <InlineGrid
-                        className="ControlableForm"
-                        filter={(record) =>
-                            !['bookmark', 'widget'].includes(record['kindOfService'])
-                        }
-                    >
-                        <Search
-                            inputsToControl={inputsToControl}
-                            setHasChildren={setHasChildren}
+                {!navigator.userAgent.match('CrKey') && (
+                    <Toolbar>
+                        {/* Create new service */}
+                        <CreateButton className="floatingButton" basePath="services" />
+                        {/* Toggle the hidden edit button(s) */}
+                        <CreateButton
+                            className="RaEditButton floatingButton"
+                            label="edit"
+                            icon={<CreateButtonIcon />}
+                            color="secondary"
+                            aria-label="list"
+                            onClick={(e) => {
+                                toggleEdit();
+                                e.preventDefault();
+                                return false;
+                            }}
                         />
-                    </InlineGrid>
-                </div>
+                        {/* Toggle the hidden search form(s) */}
+                        <CreateButton
+                            className="RaSearchButton floatingButton"
+                            label="Advanced"
+                            icon={<SearchIcon />}
+                            color="default"
+                            aria-label="list"
+                            onClick={(e) => {
+                                toggleSearchMode();
+                                e.preventDefault();
+                                return false;
+                            }}
+                        />
+                        {/* First List : show all bookmarks */}
+                        <InlineGrid
+                            filter={(record) =>
+                                !['widget'].includes(record['kindOfService'])
+                            }
+                        >
+                            <Dash editorMode={editorMode} record={null} />
+                        </InlineGrid>
+                    </Toolbar>
+                )}
+
+                {!navigator.userAgent.match('CrKey') && (
+                    <div className={searchMode ? 'active ControlForm' : 'ControlForm'}>
+                        {/* Element to control all the other search form siblings */}
+                        <ControlForm
+                            searchMode={searchMode}
+                            inputsToControl={inputsToControl}
+                            hasChildren={hasChildren}
+                        />
+                        {/* Second List : show only the service that have a search form */}
+                        <InlineGrid
+                            className="ControlableForm"
+                            filter={(record) =>
+                                !['bookmark', 'widget'].includes(record['kindOfService'])
+                            }
+                        >
+                            <Search
+                                inputsToControl={inputsToControl}
+                                setHasChildren={setHasChildren}
+                            />
+                        </InlineGrid>
+                    </div>
+                )}
                 <div>
                     <InlineGrid
                         filter={(record) => ['widget'].includes(record['kindOfService'])}

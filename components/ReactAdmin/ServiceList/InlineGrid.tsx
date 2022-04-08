@@ -14,24 +14,21 @@ const InlineGrid: FC<
     const { children, className } = props;
     const filter = (item) => {
         try {
-            const filter = JSON.parse(
+            let filter = JSON.parse(
                 '' +
                     new URLSearchParams(window.location.hash).get(
                         '#/api/swagger/services?filter'
                     )
             );
-            if (typeof filter != 'undefined' && filter) {
-                for (const [key, value] of Object.entries<string>(filter)) {
-                    if (
-                        (value.startsWith('!') &&
-                            (!item[key] ||
-                                item[key].split(',').indexOf(value.substr(1)) != -1)) ||
-                        (!value.startsWith('!') &&
-                            (typeof item[key] != 'string' ||
-                                item[key].split(',').indexOf(value) == -1))
-                    ) {
-                        return false;
-                    }
+            if (typeof filter == 'undefined' || !filter) {
+                filter = { hidden: '!true' };
+            }
+            for (const [key, value] of Object.entries<string>(filter)) {
+                const contains =
+                    ('' + item[key]).split(',').indexOf(value.replace('!', '')) != -1;
+                const needed = !value.startsWith('!');
+                if (needed ? !contains : contains) {
+                    return false;
                 }
             }
         } catch (e) {

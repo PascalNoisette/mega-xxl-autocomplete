@@ -12,4 +12,5 @@ export interface Service {
     source: string;
     refresh: string;
     content: string;
+    css: string;
 }

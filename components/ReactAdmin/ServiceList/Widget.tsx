@@ -1,7 +1,6 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import { Service } from './Interface/Service';
 import PropTypes from 'prop-types';
-import entities from 'entities';
 import { ListView, EditButton } from 'react-admin';
 import myDataProvider from './Widget/DataProvider';
 import inflection from 'inflection';
@@ -49,7 +48,6 @@ const MyListViewGuesser: FunctionComponent<any> = (props) => {
                     typeof props.service.columns == 'undefined' ||
                     props.service.columns.split(',').indexOf(item.props.source) != -1
             );
-            console.log(inferredElements);
             const inferredChild = new InferredElement(
                 listFieldTypes.table,
                 null,
@@ -133,7 +131,10 @@ const Widget: FunctionComponent<{
                 )}
             </h3>
             {service.content == 'html' && (
-                <div dangerouslySetInnerHTML={{ __html: entities.encodeHTML(content) }} />
+                <>
+                    <style dangerouslySetInnerHTML={{ __html: service.css }} />
+                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                </>
             )}
             {service.content == 'json' && (
                 <MyListViewGuesser

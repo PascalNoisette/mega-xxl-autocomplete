@@ -8,6 +8,7 @@ export const Widget: FunctionComponent<any> = () => {
         <>
             <TextInput source="refresh" />
             <TextInput source="columns" />
+            <TextInput multiline source="css" />
             <SelectInput
                 source="content"
                 choices={[

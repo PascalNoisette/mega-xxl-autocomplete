@@ -26,7 +26,10 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<boolea
                             reject(err);
                         }
                         services.map((x) => {
-                            if (typeof x.data.engine == 'undefined') {
+                            if (
+                                typeof x.data.engine == 'undefined' ||
+                                x.data.engine == ''
+                            ) {
                                 return;
                             }
                             if (typeof Engines[x.data.engine] == 'undefined') {
